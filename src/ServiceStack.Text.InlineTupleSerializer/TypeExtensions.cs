@@ -19,9 +19,33 @@ namespace ServiceStack.Text.InlineTupleSerializer
 
         public static bool IsTuple(this Type type)
         {
-            return type.IsGenericTypeDefinition
-                ? _genericTupleTypes.Contains(type)
-                : _genericTupleTypes.Contains(type.GetGenericTypeDefinition());
+            return type.GetInterfaces().Contains(Type.GetType("System.ITuple"));
+        }
+
+        public static Type FindTupleDefinition(this Type type, Type parentType = null)
+        {
+            if (!type.IsTuple())
+            {
+                return null;
+            }
+
+            if (type.IsGenericType)
+            {
+                if (type.IsGenericTypeDefinition && _genericTupleTypes.Contains(type))
+                {
+                    return parentType;
+                }
+
+                return type.GetGenericTypeDefinition().FindTupleDefinition(type);
+            }
+
+            var derived = type.BaseType;
+            if (derived != null && derived != typeof(Object))
+            {
+                return derived.FindTupleDefinition(type);
+            }
+
+            return null;
         }
     }
 }

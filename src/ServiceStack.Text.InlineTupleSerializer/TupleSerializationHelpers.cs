@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.ComponentModel;
-using System.Globalization;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 
 namespace ServiceStack.Text.InlineTupleSerializer
@@ -12,58 +9,66 @@ namespace ServiceStack.Text.InlineTupleSerializer
     internal class TupleSerializationHelpers<TTuple> where TTuple
         : IStructuralEquatable, IStructuralComparable, IComparable
     {
-        private const string _delimeter = "-";
+        internal const string DELIMETER = "-";
 
-        public int TupleMemberCount { get; private set; }
-
-        public Type[] TupleSubtypes { get; private set; }
-
-        public IList<MethodInfo> TupleMemberProxies { get; private set; }
+        internal readonly TupleReflectionProxy<TTuple> _tupleInfo;
+        internal readonly ConcurrentDictionary<TTuple, string> _serializationCache;
+        internal readonly ConcurrentDictionary<string, TTuple> _deserializationCache;
 
         public TupleSerializationHelpers()
+            : this(new TupleReflectionProxy<TTuple>(), InlineTupleSerializationCache<TTuple>.SerializeCache, InlineTupleSerializationCache<TTuple>.DeserializeCache)
         {
-            if (!typeof(TTuple).IsTuple())
-            {
-                throw new InvalidOperationException();
-            }
+        }
 
-            TupleMemberCount = typeof(TTuple).GetGenericArguments().Count();
-            TupleSubtypes = typeof(TTuple).GetGenericArguments();
-            TupleMemberProxies = Enumerable.Range(1, TupleMemberCount)
-                .Select(i => typeof(TTuple).GetProperty(string.Concat("Item", i.ToString(CultureInfo.InvariantCulture))))
-                .Select(pi => pi.GetGetMethod())
-                .ToList();
+        public TupleSerializationHelpers(
+            TupleReflectionProxy<TTuple> tupleInfo,
+            ConcurrentDictionary<TTuple, string> serializationCache, 
+            ConcurrentDictionary<string, TTuple> deserializationCache)
+        {
+            _tupleInfo = tupleInfo;
+            _serializationCache = serializationCache; 
+            _deserializationCache = deserializationCache;
         }
 
         public TTuple GetTupleFrom(string stringValue)
         {
-            return DeserializeTuple(stringValue);//, Cache);
+            return DeserializeTuple(stringValue, _deserializationCache);
         }
 
         public string GetStringValue(TTuple tupleValue)
         {
-            return SerializeTuple(tupleValue);//, Cache);
+            return SerializeTuple(tupleValue, _serializationCache);
+        }
+
+        internal string SerializeTuple(TTuple tupleValue, ConcurrentDictionary<TTuple, string> cache)
+        {
+            return cache.GetOrAdd(tupleValue, SerializeTuple);
         }
 
         internal string SerializeTuple(TTuple tupleValue)
         {
             var stringBuilder = new StringBuilder();
             var delimeter = "";
-            foreach (var tupleMemberProxy in TupleMemberProxies)
+            foreach (var tupleMemberProxy in _tupleInfo.MethodProxies)
             {
                 stringBuilder.Append(delimeter);
                 stringBuilder.Append(tupleMemberProxy.Invoke(tupleValue, new object[] {}));
-                delimeter = _delimeter;
+                delimeter = DELIMETER;
             }
 
             return stringBuilder.ToString();
         }
 
+        internal TTuple DeserializeTuple(string stringValue, ConcurrentDictionary<string, TTuple> cache)
+        {
+            return cache.GetOrAdd(stringValue, DeserializeTuple);
+        }
+
         internal TTuple DeserializeTuple(string stringValue)
         {
-            var stringValues = stringValue.Split(new []{_delimeter}, StringSplitOptions.None);
+            var stringValues = stringValue.Split(new[] { DELIMETER }, StringSplitOptions.None);
 
-            if (stringValues.Length != TupleMemberCount)
+            if (stringValues.Length != _tupleInfo.Count)
             {
                 throw new InvalidOperationException();
             }
@@ -75,11 +80,11 @@ namespace ServiceStack.Text.InlineTupleSerializer
 
         internal object[] MapStringValuesToObjects(string[] stringValues)
         {
-            var objects = new object[TupleMemberCount];
+            var objects = new object[_tupleInfo.Count];
 
-            for (var i = 0; i < TupleMemberCount; i++)
+            for (var i = 0; i < _tupleInfo.Count; i++)
             {
-                var converter = TypeDescriptor.GetConverter(TupleSubtypes[i]);
+                var converter = TypeDescriptor.GetConverter(_tupleInfo.SubTypes[i]);
                 var result = converter.ConvertFrom(stringValues[i]);
                 objects[i] = result;
             }

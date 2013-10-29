@@ -25,5 +25,15 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
 
             Assert.AreEqual(new Tuple<string, string, string>("EUR", "EUR", "EUR"), ser);
         }
+
+        [TestMethod]
+        public void Deserialize_Inherited()
+        {
+            var sh = new TupleSerializationHelpers<StringPair>();
+
+            var ser = sh.GetTupleFrom("EUR-EUR");
+
+            Assert.AreEqual(new StringPair("EUR", "EUR"), ser);
+        }
     }
 }

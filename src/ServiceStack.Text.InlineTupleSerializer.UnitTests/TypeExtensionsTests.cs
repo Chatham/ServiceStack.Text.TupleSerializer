@@ -46,5 +46,52 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
                 Assert.IsTrue(tupleType.IsTuple());
             }
         }
+
+        [TestMethod]
+        public void IsTuple_ForRegularType_ReturnsFalse()
+        {
+            Assert.IsFalse(typeof (String).IsTuple());
+        }
+
+        [TestMethod]
+        public void IsTuple_ForInheritedType_ReturnsTrue()
+        {
+            Assert.IsTrue(typeof(StringPair).IsTuple());
+        }
+
+        [TestMethod]
+        public void FindTupleDefinition_NonTupleType_ReturnsNull()
+        {
+            var type = typeof(string).FindTupleDefinition();
+            Assert.IsNull(type);
+        }
+
+        [TestMethod]
+        public void FindTupleDefinition_GenericTupleTypeDefinition_ReturnsNull()
+        {
+            var type = typeof (Tuple<,>).FindTupleDefinition();
+            Assert.IsNull(type);
+        }
+
+        [TestMethod]
+        public void FindTupleDefinition_ConcreteTupleTypeDefinition_ReturnsUnderlyingConcreteTupleType()
+        {
+            var type = typeof(Tuple<string, string>).FindTupleDefinition();
+            Assert.AreEqual(typeof(Tuple<string,string>), type);
+        }
+
+        [TestMethod]
+        public void FindTupleDefinition_InheritedTupleTypeDefinition_ReturnsUnderlyingConcreteTupleType()
+        {
+            var type = typeof(StringPair).FindTupleDefinition();
+            Assert.AreEqual(typeof(Tuple<string, string>), type);
+        }
+
+        [TestMethod]
+        public void FindTupleDefinition_ObjectType_ReturnsNull()
+        {
+            var type = typeof(Object).FindTupleDefinition();
+            Assert.IsNull(type);
+        }
     }
 }
