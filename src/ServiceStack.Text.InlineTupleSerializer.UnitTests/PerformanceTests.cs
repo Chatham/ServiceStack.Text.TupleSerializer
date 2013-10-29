@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServiceStack.Text.InlineTupleSerializer.Api;
 
@@ -9,7 +10,7 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
     [TestClass]
     public class PerformanceTests
     {
-        private const int TEST_ITERATIONS = 1000000;
+        private const int TEST_ITERATIONS = 2000000;
 
         private readonly string[] letters =
         {
@@ -78,13 +79,15 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
         {
             var rnd = new Random();
 
+            f(values[0]);
+
             using (new Stopper(serializerType))
             {
-                for (int i = 0; i < TEST_ITERATIONS; i++)
+                Parallel.For(0, TEST_ITERATIONS, i =>
                 {
                     var r = rnd.Next(values.Count);
                     f(values[r]);
-                }
+                });
             }
         }
 

@@ -7,45 +7,34 @@ namespace ServiceStack.Text.InlineTupleSerializer
 {
     public class ReadWriterLockSlimDictionaryCache<TKey, TValue> : ICache<TKey, TValue>
     {
-        private readonly ReaderWriterLockSlim cacheLock = new ReaderWriterLockSlim();
+        private readonly ReaderWriterLockSlim _lock = new ReaderWriterLockSlim();
 
-        private readonly Dictionary<TKey, TValue> innerCache = new Dictionary<TKey, TValue>();
+        private readonly Dictionary<TKey, TValue> _cache = new Dictionary<TKey, TValue>();
 
         public TValue GetOrAdd(TKey key, Func<TKey, TValue> valueFactory)
         {
-            TValue returnValue;
-            if (TryGetValue(key, out returnValue))
-            {
-                return returnValue;
-            }
-            return Add(key, valueFactory);
-        }
-
-        public bool TryGetValue(TKey key, out TValue value)
-        {
-            cacheLock.EnterReadLock();
+            _lock.EnterUpgradeableReadLock();
             try
             {
-                return innerCache.TryGetValue(key, out value);
+                TValue returnValue;
+                if (_cache.TryGetValue(key, out returnValue))
+                    return returnValue;
+
+                _lock.EnterWriteLock();
+                try
+                {
+                    returnValue = valueFactory(key);
+                    _cache.Add(key, returnValue);
+                    return returnValue;
+                }
+                finally
+                {
+                    _lock.ExitWriteLock();
+                }
             }
             finally
             {
-                cacheLock.ExitReadLock();
-            }
-        }
-
-        public TValue Add(TKey key, Func<TKey, TValue> valueFactory)
-        {
-            cacheLock.EnterWriteLock();
-            try
-            {
-                var value = valueFactory(key);
-                innerCache.Add(key, value);
-                return value;
-            }
-            finally
-            {
-                cacheLock.ExitWriteLock();
+                _lock.ExitUpgradeableReadLock();
             }
         }
     }
