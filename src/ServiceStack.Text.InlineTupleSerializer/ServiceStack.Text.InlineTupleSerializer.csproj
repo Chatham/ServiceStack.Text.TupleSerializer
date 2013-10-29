@@ -42,10 +42,16 @@
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="Api\IInlineTupleSerializerConfigurator.cs" />
+    <Compile Include="Api\ICache.cs" />
+    <Compile Include="ConcurrentDictionaryCache.cs" />
     <Compile Include="InlineTupleSerializationCache.cs" />
     <Compile Include="InlineTupleSerializerConfigurator.cs" />
     <Compile Include="Api\ITupleSerializerInitializerProxy.cs" />
+    <Compile Include="Api\ITupleSerializer.cs" />
+    <Compile Include="PassThroughCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadWriterLockSlimDictionaryCache.cs" />
+    <Compile Include="SynchronizedDictionaryCache.cs" />
     <Compile Include="TupleReflectionProxy.cs" />
     <Compile Include="TupleResolutionCache.cs" />
     <Compile Include="TupleSerializationHelpers.cs" />

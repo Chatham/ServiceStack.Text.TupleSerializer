@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Text;
+using ServiceStack.Text.InlineTupleSerializer.Api;
 
 namespace ServiceStack.Text.InlineTupleSerializer
 {
-    internal class TupleSerializationHelpers<TTuple> where TTuple
-        : IStructuralEquatable, IStructuralComparable, IComparable
+    internal class TupleSerializationHelpers<TTuple> : ITupleSerializer<TTuple> 
+        where TTuple : IStructuralEquatable, IStructuralComparable, IComparable
     {
         internal const string DELIMETER = "-";
 
         internal readonly TupleReflectionProxy<TTuple> _tupleInfo;
-        internal readonly ConcurrentDictionary<TTuple, string> _serializationCache;
-        internal readonly ConcurrentDictionary<string, TTuple> _deserializationCache;
+        internal readonly ICache<TTuple, string> _serializationCache;
+        internal readonly ICache<string, TTuple> _deserializationCache;
 
         public TupleSerializationHelpers()
             : this(new TupleReflectionProxy<TTuple>(), InlineTupleSerializationCache<TTuple>.SerializeCache, InlineTupleSerializationCache<TTuple>.DeserializeCache)
@@ -21,9 +21,16 @@ namespace ServiceStack.Text.InlineTupleSerializer
         }
 
         public TupleSerializationHelpers(
+            ICache<TTuple, string> serializationCache,
+            ICache<string, TTuple> deserializationCache)
+            : this(new TupleReflectionProxy<TTuple>(), serializationCache, deserializationCache)
+        {
+        }
+
+        public TupleSerializationHelpers(
             TupleReflectionProxy<TTuple> tupleInfo,
-            ConcurrentDictionary<TTuple, string> serializationCache, 
-            ConcurrentDictionary<string, TTuple> deserializationCache)
+            ICache<TTuple, string> serializationCache,
+            ICache<string, TTuple> deserializationCache)
         {
             _tupleInfo = tupleInfo;
             _serializationCache = serializationCache; 
@@ -40,7 +47,7 @@ namespace ServiceStack.Text.InlineTupleSerializer
             return SerializeTuple(tupleValue, _serializationCache);
         }
 
-        internal string SerializeTuple(TTuple tupleValue, ConcurrentDictionary<TTuple, string> cache)
+        internal string SerializeTuple(TTuple tupleValue, ICache<TTuple, string> cache)
         {
             return cache.GetOrAdd(tupleValue, SerializeTuple);
         }
@@ -59,7 +66,7 @@ namespace ServiceStack.Text.InlineTupleSerializer
             return stringBuilder.ToString();
         }
 
-        internal TTuple DeserializeTuple(string stringValue, ConcurrentDictionary<string, TTuple> cache)
+        internal TTuple DeserializeTuple(string stringValue, ICache<string, TTuple> cache)
         {
             return cache.GetOrAdd(stringValue, DeserializeTuple);
         }
