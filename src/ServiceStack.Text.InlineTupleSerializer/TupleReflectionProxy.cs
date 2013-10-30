@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
@@ -50,11 +49,7 @@ namespace ServiceStack.Text.InlineTupleSerializer
             {
                 if (methodProxies == null)
                 {
-                    methodProxies = Enumerable.Range(1, Count)
-                        .Select(
-                            i =>
-                                type.GetProperty(string.Concat("Item",
-                                    i.ToString(CultureInfo.InvariantCulture))))
+                    methodProxies = type.GetProperties()
                         .Select(pi => pi.GetGetMethod())
                         .ToList();
                 }
