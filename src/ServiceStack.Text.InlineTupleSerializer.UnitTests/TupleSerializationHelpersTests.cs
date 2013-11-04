@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ServiceStack.Text.InlineTupleSerializer.UnitTests.TestCases;
 
 namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
 {

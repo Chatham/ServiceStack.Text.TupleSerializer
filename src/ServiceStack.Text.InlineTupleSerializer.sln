@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.InlineTupleSerializer.PerformanceTests", "ServiceStack.Text.InlineTupleSerializer.PerformanceTests\ServiceStack.Text.InlineTupleSerializer.PerformanceTests.csproj", "{33CFCF23-7AFA-4F60-912F-903266529F03}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = ServiceStack.Text.InlineTupleSerializer.vsmdi
@@ -29,6 +31,10 @@ Global
 		{D295053C-ADB4-4267-AEE7-BBB5208D1756}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D295053C-ADB4-4267-AEE7-BBB5208D1756}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D295053C-ADB4-4267-AEE7-BBB5208D1756}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33CFCF23-7AFA-4F60-912F-903266529F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33CFCF23-7AFA-4F60-912F-903266529F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33CFCF23-7AFA-4F60-912F-903266529F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33CFCF23-7AFA-4F60-912F-903266529F03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -18,14 +18,6 @@ namespace ServiceStack.Text.InlineTupleSerializer
                 return new HashSet<Type>();
             }
 
-            foreach (var type in types)
-            {
-                if (type.ToString().ToLower().Contains("dto"))
-                {
-                    Console.WriteLine(type + " ... " + type.IsTuple());
-                }
-            }
-
             var enumTypes =
                 (from type in types.AsParallel()
                  where type.IsTuple()
