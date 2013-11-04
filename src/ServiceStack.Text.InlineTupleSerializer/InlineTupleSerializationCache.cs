@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ServiceStack.Text.InlineTupleSerializer
 {
+    [ExcludeFromCodeCoverage]
     internal static class InlineTupleSerializationCache<TTuple> where TTuple
         : IStructuralEquatable, IStructuralComparable, IComparable
     {
