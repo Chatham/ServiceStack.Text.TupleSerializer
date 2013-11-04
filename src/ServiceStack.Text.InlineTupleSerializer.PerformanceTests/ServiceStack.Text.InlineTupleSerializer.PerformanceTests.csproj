@@ -45,8 +45,11 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PassThroughCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PerformanceTests.cs" />
+    <Compile Include="ReadWriterLockSlimDictionaryCache.cs" />
+    <Compile Include="SynchronizedDictionaryCache.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceStack.Text.InlineTupleSerializer\ServiceStack.Text.InlineTupleSerializer.csproj">

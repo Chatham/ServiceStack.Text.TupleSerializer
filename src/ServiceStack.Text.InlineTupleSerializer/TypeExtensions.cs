@@ -24,7 +24,7 @@ namespace ServiceStack.Text.InlineTupleSerializer
 
         public static Type FindTupleDefinition(this Type type, Type parentType = null)
         {
-            if (!type.IsTuple())
+            if (type == null || !type.IsTuple())
             {
                 return null;
             }
@@ -39,13 +39,7 @@ namespace ServiceStack.Text.InlineTupleSerializer
                 return type.GetGenericTypeDefinition().FindTupleDefinition(type);
             }
 
-            var derived = type.BaseType;
-            if (derived != null && derived != typeof(Object))
-            {
-                return derived.FindTupleDefinition(type);
-            }
-
-            return null;
+            return type.BaseType.FindTupleDefinition(type);
         }
     }
 }

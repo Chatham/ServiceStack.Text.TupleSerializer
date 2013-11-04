@@ -94,5 +94,11 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
             var type = typeof(Object).FindTupleDefinition();
             Assert.IsNull(type);
         }
+
+        [TestMethod]
+        public void FindTupleDefinition_Null_ReturnsNull()
+        {
+            Assert.IsNull(TypeExtensions.FindTupleDefinition(null));
+        }
     }
 }
