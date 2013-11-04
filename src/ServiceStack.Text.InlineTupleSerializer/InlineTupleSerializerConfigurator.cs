@@ -44,15 +44,6 @@ namespace ServiceStack.Text.InlineTupleSerializer
         public void Configure()
         {
             var publicTuples = _assembliesToScan.GetPublicTuples(_namespaceFilter);
-
-            Console.WriteLine("configed: ");
-            foreach (var publicTuple in publicTuples)
-            {
-                Console.WriteLine("   " + publicTuple.ToString());
-            }
-            
-
-
             Parallel.ForEach(publicTuples, JsConfigProxy.ConfigInlineTupleSerializer);
         }
     }
