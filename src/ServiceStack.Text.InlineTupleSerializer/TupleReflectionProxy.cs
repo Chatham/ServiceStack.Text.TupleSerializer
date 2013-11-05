@@ -9,59 +9,59 @@ namespace ServiceStack.Text.InlineTupleSerializer
     internal class TupleReflectionProxy<TTuple> where TTuple
         : IStructuralEquatable, IStructuralComparable, IComparable
     {
-        private readonly Type type;
+        private readonly Type _type;
 
-        private int count;
+        private int _count;
 
         public int Count
         {
             get
             {
-                if (count == 0)
+                if (_count == 0)
                 {
-                    count = type.GetGenericArguments().Count();
+                    _count = _type.GetGenericArguments().Count();
                 }
 
-                return count;
+                return _count;
             }
         }
 
-        private Type[] subTypes;
+        private Type[] _subTypes;
 
         public Type[] SubTypes
         {
             get
             {
-                if (subTypes == null)
+                if (_subTypes == null)
                 {
-                    subTypes = type.GetGenericArguments();
+                    _subTypes = _type.GetGenericArguments();
                 }
 
-                return subTypes;
+                return _subTypes;
             }
         }
 
-        private IList<MethodInfo> methodProxies;
+        private IList<MethodInfo> _methodProxies;
 
         public IList<MethodInfo> MethodProxies
         {
             get
             {
-                if (methodProxies == null)
+                if (_methodProxies == null)
                 {
-                    methodProxies = type.GetProperties()
+                    _methodProxies = _type.GetProperties()
                         .Select(pi => pi.GetGetMethod())
                         .ToList();
                 }
-                return methodProxies;
+                return _methodProxies;
             }
         }
 
         public TupleReflectionProxy()
         {
-            type = typeof (TTuple).FindTupleDefinition();
+            _type = typeof (TTuple).FindTupleDefinition();
 
-            if (type == null)
+            if (_type == null)
             {
                 throw new InvalidOperationException("Type parameter must be a tuple.");
             }
