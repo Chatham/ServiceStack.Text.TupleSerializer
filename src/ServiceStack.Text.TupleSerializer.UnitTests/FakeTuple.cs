@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
+namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
     internal class FakeTuple : IStructuralEquatable, IStructuralComparable, IComparable
     {

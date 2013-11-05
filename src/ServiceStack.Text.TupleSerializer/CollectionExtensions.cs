@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ServiceStack.Text.InlineTupleSerializer
+namespace ServiceStack.Text.TupleSerializer
 {
     internal static class CollectionExtensions
     {

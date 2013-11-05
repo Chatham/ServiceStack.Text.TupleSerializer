@@ -1,4 +1,4 @@
-﻿namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
+﻿namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
     public static class StaticTestingLocks
     {

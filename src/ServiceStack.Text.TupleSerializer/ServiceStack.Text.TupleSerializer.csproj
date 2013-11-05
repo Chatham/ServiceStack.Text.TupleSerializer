@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B23F81B7-2637-4636-B0A9-07DD0A93B3FF}</ProjectGuid>
+    <ProjectGuid>{8BD6FCD8-D906-4EB0-B89E-7113D270DEFA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceStack.Text.InlineTupleSerializer</RootNamespace>
-    <AssemblyName>ServiceStack.Text.InlineTupleSerializer</AssemblyName>
+    <RootNamespace>ServiceStack.Text.TupleSerializer</RootNamespace>
+    <AssemblyName>ServiceStack.Text.TupleSerializer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,15 +39,15 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ICache.cs" />
+    <Compile Include="Api\IInlineTupleSerializerConfigurator.cs" />
+    <Compile Include="Api\ITupleSerializer.cs" />
+    <Compile Include="Api\ITupleSerializerInitializerProxy.cs" />
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
-    <Compile Include="Api\IInlineTupleSerializerConfigurator.cs" />
-    <Compile Include="Api\ICache.cs" />
     <Compile Include="ConcurrentDictionaryCache.cs" />
     <Compile Include="InlineTupleSerializationCache.cs" />
     <Compile Include="InlineTupleSerializerConfigurator.cs" />
-    <Compile Include="Api\ITupleSerializerInitializerProxy.cs" />
-    <Compile Include="Api\ITupleSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TupleReflectionProxy.cs" />
     <Compile Include="TupleSerializationHelpers.cs" />

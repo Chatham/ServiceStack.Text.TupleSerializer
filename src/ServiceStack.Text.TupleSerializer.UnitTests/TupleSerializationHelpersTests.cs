@@ -3,7 +3,7 @@ using ExampleTuples;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
 
-namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
+namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
     [TestClass]
     public class TupleSerializationHelpersTests

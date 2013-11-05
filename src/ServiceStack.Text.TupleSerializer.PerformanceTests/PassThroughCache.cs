@@ -1,7 +1,7 @@
 ﻿using System;
-using ServiceStack.Text.InlineTupleSerializer.Api;
+using ServiceStack.Text.TupleSerializer.Api;
 
-namespace ServiceStack.Text.InlineTupleSerializer.PerformanceTests
+namespace ServiceStack.Text.TupleSerializer.PerformanceTests
 {
     public class PassThroughCache<TKey, TValue> : ICache<TKey, TValue>
     {

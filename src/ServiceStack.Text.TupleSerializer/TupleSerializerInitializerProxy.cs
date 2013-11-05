@@ -1,7 +1,7 @@
 ﻿using System;
-using ServiceStack.Text.InlineTupleSerializer.Api;
+using ServiceStack.Text.TupleSerializer.Api;
 
-namespace ServiceStack.Text.InlineTupleSerializer
+namespace ServiceStack.Text.TupleSerializer
 {
     internal class TupleSerializerInitializerProxy : ITupleSerializerInitializerProxy
     {

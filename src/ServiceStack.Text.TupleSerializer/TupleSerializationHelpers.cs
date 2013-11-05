@@ -2,9 +2,9 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Text;
-using ServiceStack.Text.InlineTupleSerializer.Api;
+using ServiceStack.Text.TupleSerializer.Api;
 
-namespace ServiceStack.Text.InlineTupleSerializer
+namespace ServiceStack.Text.TupleSerializer
 {
     internal class TupleSerializationHelpers<TTuple> : ITupleSerializer<TTuple> 
         where TTuple : IStructuralEquatable, IStructuralComparable, IComparable

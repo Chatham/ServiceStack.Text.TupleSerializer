@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D295053C-ADB4-4267-AEE7-BBB5208D1756}</ProjectGuid>
+    <ProjectGuid>{888A9B56-C98C-4A64-A9E3-5019AAB5317B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceStack.Text.InlineTupleSerializer.UnitTests</RootNamespace>
-    <AssemblyName>ServiceStack.Text.InlineTupleSerializer.UnitTests</AssemblyName>
+    <RootNamespace>ServiceStack.Text.TupleSerializer.UnitTests</RootNamespace>
+    <AssemblyName>ServiceStack.Text.TupleSerializer.UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -55,12 +55,10 @@
     <Compile Include="InlineTupleSerializerConfiguratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticTestingLocks.cs" />
-    <Compile Include="TestCases\NamespaceWithSingularTupleExample.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="TestCases\ExampleTuples.cs" />
     <Compile Include="TestCases\ExampleTuplesAsGenericParameters.cs" />
     <Compile Include="TestCases\ExampleTupleWithoutNamespace.cs" />
+    <Compile Include="TestCases\NamespaceWithSingularTupleExample.cs" />
     <Compile Include="TupleReflectionProxyTests.cs" />
     <Compile Include="TupleSerializationHelpersTests.cs" />
     <Compile Include="TupleSerializerInitializerProxyFake.cs" />
@@ -72,9 +70,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.Text.InlineTupleSerializer\ServiceStack.Text.InlineTupleSerializer.csproj">
-      <Project>{B23F81B7-2637-4636-B0A9-07DD0A93B3FF}</Project>
-      <Name>ServiceStack.Text.InlineTupleSerializer</Name>
+    <ProjectReference Include="..\ServiceStack.Text.TupleSerializer\ServiceStack.Text.TupleSerializer.csproj">
+      <Project>{8BD6FCD8-D906-4EB0-B89E-7113D270DEFA}</Project>
+      <Name>ServiceStack.Text.TupleSerializer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

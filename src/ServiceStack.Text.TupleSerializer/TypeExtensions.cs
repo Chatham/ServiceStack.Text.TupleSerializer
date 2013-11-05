@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace ServiceStack.Text.InlineTupleSerializer
+namespace ServiceStack.Text.TupleSerializer
 {
     internal static class TypeExtensions
     {

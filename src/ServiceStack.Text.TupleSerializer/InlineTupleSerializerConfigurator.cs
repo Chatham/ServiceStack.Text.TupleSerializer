@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
-using ServiceStack.Text.InlineTupleSerializer.Api;
+using ServiceStack.Text.TupleSerializer.Api;
 
-namespace ServiceStack.Text.InlineTupleSerializer
+namespace ServiceStack.Text.TupleSerializer
 {
     public sealed class InlineTupleSerializerConfigurator : IInlineTupleSerializerConfigurator
     {

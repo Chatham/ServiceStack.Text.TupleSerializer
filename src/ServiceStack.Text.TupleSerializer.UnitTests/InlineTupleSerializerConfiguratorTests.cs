@@ -3,7 +3,7 @@ using System.Reflection;
 using ExampleTuples;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
+namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
     [TestClass]
     public class InlineTupleSerializerConfiguratorTests

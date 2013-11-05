@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ServiceStack.Text.InlineTupleSerializer.PerformanceTests")]
+[assembly: AssemblyTitle("ServiceStack.Text.TupleSerializer.PerformanceTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Chatham Financial Corp.")]
-[assembly: AssemblyProduct("ServiceStack.Text.InlineTupleSerializer.PerformanceTests")]
+[assembly: AssemblyProduct("ServiceStack.Text.TupleSerializer.PerformanceTests")]
 [assembly: AssemblyCopyright("Copyright © Chatham Financial Corp. 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("ec14ddac-de2b-4428-8bab-970338bc5766")]
+[assembly: Guid("f0bf36fd-076e-47fe-a4a0-1f71639d4755")]
 
 // Version information for an assembly consists of the following four values:
 //

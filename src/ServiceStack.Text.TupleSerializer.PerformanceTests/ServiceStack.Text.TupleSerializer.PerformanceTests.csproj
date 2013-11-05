@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{33CFCF23-7AFA-4F60-912F-903266529F03}</ProjectGuid>
+    <ProjectGuid>{3A6EFFF4-CA37-415E-BAAB-F77744C33E4C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ServiceStack.Text.InlineTupleSerializer.PerformanceTests</RootNamespace>
-    <AssemblyName>ServiceStack.Text.InlineTupleSerializer.PerformanceTests</AssemblyName>
+    <RootNamespace>ServiceStack.Text.TupleSerializer.PerformanceTests</RootNamespace>
+    <AssemblyName>ServiceStack.Text.TupleSerializer.PerformanceTests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -46,15 +46,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PassThroughCache.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PerformanceTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadWriterLockSlimDictionaryCache.cs" />
     <Compile Include="SynchronizedDictionaryCache.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServiceStack.Text.InlineTupleSerializer\ServiceStack.Text.InlineTupleSerializer.csproj">
-      <Project>{B23F81B7-2637-4636-B0A9-07DD0A93B3FF}</Project>
-      <Name>ServiceStack.Text.InlineTupleSerializer</Name>
+    <ProjectReference Include="..\ServiceStack.Text.TupleSerializer\ServiceStack.Text.TupleSerializer.csproj">
+      <Project>{8BD6FCD8-D906-4EB0-B89E-7113D270DEFA}</Project>
+      <Name>ServiceStack.Text.TupleSerializer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace ServiceStack.Text.InlineTupleSerializer
+namespace ServiceStack.Text.TupleSerializer
 {
     internal class TupleSerializerInitializer<TTuple> where TTuple 
         : IStructuralEquatable, IStructuralComparable, IComparable

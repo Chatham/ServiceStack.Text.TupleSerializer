@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ServiceStack.Text.InlineTupleSerializer.Api;
+using ServiceStack.Text.TupleSerializer.Api;
 
-namespace ServiceStack.Text.InlineTupleSerializer.PerformanceTests
+namespace ServiceStack.Text.TupleSerializer.PerformanceTests
 {
     [TestClass]
     public class PerformanceTests

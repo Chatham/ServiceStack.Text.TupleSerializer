@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using ServiceStack.Text.InlineTupleSerializer.Api;
+using ServiceStack.Text.TupleSerializer.Api;
 
-namespace ServiceStack.Text.InlineTupleSerializer.PerformanceTests
+namespace ServiceStack.Text.TupleSerializer.PerformanceTests
 {
     public class SynchronizedDictionaryCache<TKey, TValue> : ICache<TKey, TValue>
     {

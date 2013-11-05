@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ServiceStack.Text.InlineTupleSerializer.Api
+namespace ServiceStack.Text.TupleSerializer.Api
 {
     internal interface ICache<TKey, TValue>
     {

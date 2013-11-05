@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 
-namespace ServiceStack.Text.InlineTupleSerializer
+namespace ServiceStack.Text.TupleSerializer
 {
     [ExcludeFromCodeCoverage]
     internal static class InlineTupleSerializationCache<TTuple> where TTuple

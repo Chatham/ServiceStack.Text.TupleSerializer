@@ -1,40 +1,40 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.InlineTupleSerializer", "ServiceStack.Text.InlineTupleSerializer\ServiceStack.Text.InlineTupleSerializer.csproj", "{B23F81B7-2637-4636-B0A9-07DD0A93B3FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.TupleSerializer", "ServiceStack.Text.TupleSerializer\ServiceStack.Text.TupleSerializer.csproj", "{8BD6FCD8-D906-4EB0-B89E-7113D270DEFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.InlineTupleSerializer.UnitTests", "ServiceStack.Text.InlineTupleSerializer.UnitTests\ServiceStack.Text.InlineTupleSerializer.UnitTests.csproj", "{D295053C-ADB4-4267-AEE7-BBB5208D1756}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.TupleSerializer.PerformanceTests", "ServiceStack.Text.TupleSerializer.PerformanceTests\ServiceStack.Text.TupleSerializer.PerformanceTests.csproj", "{3A6EFFF4-CA37-415E-BAAB-F77744C33E4C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{66028CD1-67E5-4F26-8254-215113D8AADD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2D58DBB-7EE0-4EAB-9052-46944FBD0065}"
 	ProjectSection(SolutionItems) = preProject
 		Local.testsettings = Local.testsettings
-		ServiceStack.Text.InlineTupleSerializer.vsmdi = ServiceStack.Text.InlineTupleSerializer.vsmdi
+		ServiceStack.Text.TupleSerializer.vsmdi = ServiceStack.Text.TupleSerializer.vsmdi
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.InlineTupleSerializer.PerformanceTests", "ServiceStack.Text.InlineTupleSerializer.PerformanceTests\ServiceStack.Text.InlineTupleSerializer.PerformanceTests.csproj", "{33CFCF23-7AFA-4F60-912F-903266529F03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.TupleSerializer.UnitTests", "ServiceStack.Text.TupleSerializer.UnitTests\ServiceStack.Text.TupleSerializer.UnitTests.csproj", "{888A9B56-C98C-4A64-A9E3-5019AAB5317B}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = ServiceStack.Text.InlineTupleSerializer.vsmdi
+		CategoryFile = ServiceStack.Text.TupleSerializer.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B23F81B7-2637-4636-B0A9-07DD0A93B3FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B23F81B7-2637-4636-B0A9-07DD0A93B3FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B23F81B7-2637-4636-B0A9-07DD0A93B3FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B23F81B7-2637-4636-B0A9-07DD0A93B3FF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D295053C-ADB4-4267-AEE7-BBB5208D1756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D295053C-ADB4-4267-AEE7-BBB5208D1756}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D295053C-ADB4-4267-AEE7-BBB5208D1756}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D295053C-ADB4-4267-AEE7-BBB5208D1756}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33CFCF23-7AFA-4F60-912F-903266529F03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33CFCF23-7AFA-4F60-912F-903266529F03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33CFCF23-7AFA-4F60-912F-903266529F03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33CFCF23-7AFA-4F60-912F-903266529F03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BD6FCD8-D906-4EB0-B89E-7113D270DEFA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BD6FCD8-D906-4EB0-B89E-7113D270DEFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BD6FCD8-D906-4EB0-B89E-7113D270DEFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BD6FCD8-D906-4EB0-B89E-7113D270DEFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A6EFFF4-CA37-415E-BAAB-F77744C33E4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A6EFFF4-CA37-415E-BAAB-F77744C33E4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A6EFFF4-CA37-415E-BAAB-F77744C33E4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A6EFFF4-CA37-415E-BAAB-F77744C33E4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{888A9B56-C98C-4A64-A9E3-5019AAB5317B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888A9B56-C98C-4A64-A9E3-5019AAB5317B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888A9B56-C98C-4A64-A9E3-5019AAB5317B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888A9B56-C98C-4A64-A9E3-5019AAB5317B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

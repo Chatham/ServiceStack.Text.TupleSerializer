@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace ServiceStack.Text.InlineTupleSerializer.Api
+namespace ServiceStack.Text.TupleSerializer.Api
 {
     public interface IInlineTupleSerializerConfigurator
     {

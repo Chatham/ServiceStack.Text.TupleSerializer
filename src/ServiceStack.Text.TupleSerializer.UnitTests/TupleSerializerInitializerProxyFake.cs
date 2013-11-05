@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using ServiceStack.Text.InlineTupleSerializer.Api;
+using ServiceStack.Text.TupleSerializer.Api;
 
-namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
+namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
     public class TupleSerializerInitializerProxyFake : ITupleSerializerInitializerProxy
     {
