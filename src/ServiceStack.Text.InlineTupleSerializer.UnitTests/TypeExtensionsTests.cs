@@ -1,6 +1,6 @@
 ﻿using System;
+using ExampleTuples;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ServiceStack.Text.InlineTupleSerializer.UnitTests.TestCases;
 
 namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
 {
@@ -57,7 +57,7 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
         [TestMethod]
         public void IsTuple_ForInheritedType_ReturnsTrue()
         {
-            Assert.IsTrue(typeof(StringPair).IsTuple());
+            Assert.IsTrue(typeof(ObjectThatInheritsFromTuple).IsTuple());
         }
 
         [TestMethod]
@@ -84,7 +84,7 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
         [TestMethod]
         public void FindTupleDefinition_InheritedTupleTypeDefinition_ReturnsUnderlyingConcreteTupleType()
         {
-            var type = typeof(StringPair).FindTupleDefinition();
+            var type = typeof(ObjectThatInheritsFromTuple).FindTupleDefinition();
             Assert.AreEqual(typeof(Tuple<string, string>), type);
         }
 

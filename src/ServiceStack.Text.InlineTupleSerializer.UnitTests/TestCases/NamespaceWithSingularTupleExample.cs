@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tupletastic
+namespace SingularTupleExample
 {
     public class RequestObjectWithVanillaTuple
     {

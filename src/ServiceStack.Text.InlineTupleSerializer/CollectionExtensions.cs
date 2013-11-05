@@ -11,7 +11,7 @@ namespace ServiceStack.Text.InlineTupleSerializer
             return collection == null || collection.Count == 0;
         }
 
-        public static HashSet<Type> GetPublicTuples(this ICollection<Type> types)
+        public static HashSet<Type> GetTuples(this ICollection<Type> types)
         {
             if (types.IsEmpty())
             {

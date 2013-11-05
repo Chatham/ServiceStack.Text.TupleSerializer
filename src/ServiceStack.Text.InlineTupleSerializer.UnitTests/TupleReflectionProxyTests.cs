@@ -1,6 +1,6 @@
 ﻿using System;
+using ExampleTuples;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ServiceStack.Text.InlineTupleSerializer.UnitTests.TestCases;
 
 namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
 {
@@ -17,7 +17,7 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
         [TestMethod]
         public void Count_OnInheritedType_ReturnsCorrectCount()
         {
-            var info = new TupleReflectionProxy<StringPair>();
+            var info = new TupleReflectionProxy<ObjectThatInheritsFromTuple>();
             Assert.AreEqual(2, info.Count); 
         }
 

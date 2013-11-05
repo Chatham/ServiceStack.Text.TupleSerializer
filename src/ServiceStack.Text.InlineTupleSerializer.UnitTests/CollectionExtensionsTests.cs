@@ -8,16 +8,16 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
     public class CollectionExtensionsTests
     {
         [TestMethod]
-        public void GetPublicTuples_NullCollection_ReturnsEmptyHashSet()
+        public void GetTuples_NullCollection_ReturnsEmptyHashSet()
         {
-            var hashSet = CollectionExtensions.GetPublicTuples(null);
+            var hashSet = CollectionExtensions.GetTuples(null);
             Assert.IsTrue(hashSet.IsEmpty());
         }
 
         [TestMethod]
-        public void GetPublicTuples_EmptyCollection_ReturnsEmptyHashSet()
+        public void GetTuples_EmptyCollection_ReturnsEmptyHashSet()
         {
-            var hashSet = new List<Type>().GetPublicTuples();
+            var hashSet = new List<Type>().GetTuples();
             Assert.IsTrue(hashSet.IsEmpty());
         }
     }

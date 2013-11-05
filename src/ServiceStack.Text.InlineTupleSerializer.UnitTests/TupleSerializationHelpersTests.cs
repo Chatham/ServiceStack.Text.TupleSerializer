@@ -1,7 +1,7 @@
 ﻿using System;
+using ExampleTuples;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Rhino.Mocks;
-using ServiceStack.Text.InlineTupleSerializer.UnitTests.TestCases;
 
 namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
 {
@@ -31,11 +31,11 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
         [TestMethod]
         public void Deserialize_Inherited()
         {
-            var sh = new TupleSerializationHelpers<StringPair>();
+            var sh = new TupleSerializationHelpers<ObjectThatInheritsFromTuple>();
 
             var ser = sh.GetTupleFrom("EUR-EUR");
 
-            Assert.AreEqual(new StringPair("EUR", "EUR"), ser);
+            Assert.AreEqual(new ObjectThatInheritsFromTuple("EUR", "EUR"), ser);
         }
 
         [TestMethod]

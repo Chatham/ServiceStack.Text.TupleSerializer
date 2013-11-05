@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Reflection;
+using ExampleTuples;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ServiceStack.Text.InlineTupleSerializer.UnitTests.TestCases;
 
 namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
 {
     [TestClass]
     public class InlineTupleSerializerConfiguratorTests
     {
-        private const string TEST_CASE_NAMESPACE = "ServiceStack.Text.InlineTupleSerializer.UnitTests.TestCases";
-
         [TestMethod]
         public void Configure_TestAssembly_ConfiguresAllTuples()
         {
@@ -19,10 +17,8 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
                 .Configure();
 
-            Assert.AreEqual(5, proxyFake.ConfigedTypes.Count);
+            Assert.AreEqual(6, proxyFake.ConfigedTypes.Count);
             Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(ExampleTupleWithoutNamespace)));
-            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(StringPair)));
-            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(StringTriad)));
             Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string>)));
             Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string, string, string>)));
         }
@@ -34,14 +30,27 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
 
             new InlineTupleSerializerConfigurator { JsConfigProxy = proxyFake }
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
-                .WithNamespaceFilter(s => s.Equals(TEST_CASE_NAMESPACE, StringComparison.OrdinalIgnoreCase))
+                .WithNamespaceFilter(s => s.Equals("ExampleTuples", StringComparison.OrdinalIgnoreCase))
                 .Configure();
 
-            Assert.AreEqual(4, proxyFake.ConfigedTypes.Count);
-            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(StringPair)));
-            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(StringTriad)));
+            Assert.AreEqual(2, proxyFake.ConfigedTypes.Count);
+            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(ObjectThatInheritsFromTuple)));
+            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<double, double>)));
+        }
+
+        [TestMethod]
+        public void Configure_TestAssemblyFilteredToGenericParametersNamespace_ConfiguresTuplesInNamespace()
+        {
+            var proxyFake = new TupleSerializerInitializerProxyFake();
+
+            new InlineTupleSerializerConfigurator { JsConfigProxy = proxyFake }
+                .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
+                .WithNamespaceFilter(s => s.Equals("GenericParameters", StringComparison.OrdinalIgnoreCase))
+                .Configure();
+
+            Assert.AreEqual(2, proxyFake.ConfigedTypes.Count);
+            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<int>)));
             Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string>)));
-            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string, string, string>)));
         }
 
         [TestMethod]
@@ -67,7 +76,7 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
 
                 new InlineTupleSerializerConfigurator()
                     .WithAssemblies(new[] {Assembly.GetExecutingAssembly()})
-                    .WithNamespaceFilter(s => s.Equals("Tupletastic", StringComparison.OrdinalIgnoreCase))
+                    .WithNamespaceFilter(s => s.Equals("SingularTupleExample", StringComparison.OrdinalIgnoreCase))
                     .Configure();
 
                 Assert.AreEqual("GetStringValue", JsConfig<Tuple<string, string, string>>.SerializeFn.Method.Name);
