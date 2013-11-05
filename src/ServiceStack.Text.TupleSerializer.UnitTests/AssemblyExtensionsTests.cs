@@ -1,34 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
-    [TestClass]
     public class AssemblyExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void AlwaysTrueFilter_WhenInvoked_ReturnsTrue()
         {
-            Assert.IsTrue(AssemblyExtensions.AlwaysTrueFilter(string.Empty));
+            Assert.True(AssemblyExtensions.AlwaysTrueFilter(string.Empty));
         }
 
-        [TestMethod]
+        [Fact]
         public void GetPublicTuples_NullCollection_ReturnEmptyHashSet()
         {
             var hashSet = AssemblyExtensions.GetPublicTuples(null, null);
-            Assert.IsTrue(hashSet.IsEmpty());
+            Assert.True(hashSet.IsEmpty());
         }
 
-        [TestMethod]
+        [Fact]
         public void GetPublicTuples_EmptyCollection_ReturnEmptyHashSet()
         {
             var hashSet = new List<Assembly>().GetPublicTuples(null);
-            Assert.IsTrue(hashSet.IsEmpty());
+            Assert.True(hashSet.IsEmpty());
         }
 
-        [TestMethod]
+        [Fact]
         public void GetPublicTuples_CollectionWithNullAssembly_ShouldSkipInspectingNullAssembly()
         {
             var executionCount = 0;
@@ -39,7 +38,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
 
             new List<Assembly> { null }.GetPublicTuples(ExecutionCountFilter);
 
-            Assert.AreEqual(0, executionCount);
+            Assert.Equal(0, executionCount);
         }
     }
 }

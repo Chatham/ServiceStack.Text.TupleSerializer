@@ -1,16 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
-    [TestClass]
     public class TupleSerializerInitializerTests
     {
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact]
         public void Constructor_NonTupleObject_ThrowsException()
         {
-            new TupleSerializerInitializer<FakeTuple>();
+            Assert.Throws<ArgumentException>(() => new TupleSerializerInitializer<FakeTuple>());
         }
     }
 }

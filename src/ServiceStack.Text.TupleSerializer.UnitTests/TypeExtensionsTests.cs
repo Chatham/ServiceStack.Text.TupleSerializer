@@ -1,13 +1,12 @@
 ﻿using System;
 using ExampleTuples;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
-    [TestClass]
     public class TypeExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void IsTuple_ForEachConcreteTuple_ReturnsTrue()
         {
             var tuples = new object[]
@@ -24,11 +23,11 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
             
             foreach (var tuple in tuples)
             {
-                Assert.IsTrue(tuple.GetType().IsTuple());
+                Assert.True(tuple.GetType().IsTuple());
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void IsTuple_ForEachGenericTupleType_ReturnsTrue()
         {
             var tupleTypes = new[] {
@@ -44,61 +43,61 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
 
             foreach (var tupleType in tupleTypes)
             {
-                Assert.IsTrue(tupleType.IsTuple());
+                Assert.True(tupleType.IsTuple());
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void IsTuple_ForRegularType_ReturnsFalse()
         {
-            Assert.IsFalse(typeof (String).IsTuple());
+            Assert.False(typeof (String).IsTuple());
         }
 
-        [TestMethod]
+        [Fact]
         public void IsTuple_ForInheritedType_ReturnsTrue()
         {
-            Assert.IsTrue(typeof(ObjectThatInheritsFromTuple).IsTuple());
+            Assert.True(typeof(ObjectThatInheritsFromTuple).IsTuple());
         }
 
-        [TestMethod]
+        [Fact]
         public void FindTupleDefinition_NonTupleType_ReturnsNull()
         {
             var type = typeof(string).FindTupleDefinition();
-            Assert.IsNull(type);
+            Assert.Null(type);
         }
 
-        [TestMethod]
+        [Fact]
         public void FindTupleDefinition_GenericTupleTypeDefinition_ReturnsNull()
         {
             var type = typeof (Tuple<,>).FindTupleDefinition();
-            Assert.IsNull(type);
+            Assert.Null(type);
         }
 
-        [TestMethod]
+        [Fact]
         public void FindTupleDefinition_ConcreteTupleTypeDefinition_ReturnsUnderlyingConcreteTupleType()
         {
             var type = typeof(Tuple<string, string>).FindTupleDefinition();
-            Assert.AreEqual(typeof(Tuple<string,string>), type);
+            Assert.Equal(typeof(Tuple<string,string>), type);
         }
 
-        [TestMethod]
+        [Fact]
         public void FindTupleDefinition_InheritedTupleTypeDefinition_ReturnsUnderlyingConcreteTupleType()
         {
             var type = typeof(ObjectThatInheritsFromTuple).FindTupleDefinition();
-            Assert.AreEqual(typeof(Tuple<string, string>), type);
+            Assert.Equal(typeof(Tuple<string, string>), type);
         }
 
-        [TestMethod]
+        [Fact]
         public void FindTupleDefinition_ObjectType_ReturnsNull()
         {
             var type = typeof(Object).FindTupleDefinition();
-            Assert.IsNull(type);
+            Assert.Null(type);
         }
 
-        [TestMethod]
+        [Fact]
         public void FindTupleDefinition_Null_ReturnsNull()
         {
-            Assert.IsNull(TypeExtensions.FindTupleDefinition(null));
+            Assert.Null(TypeExtensions.FindTupleDefinition(null));
         }
     }
 }

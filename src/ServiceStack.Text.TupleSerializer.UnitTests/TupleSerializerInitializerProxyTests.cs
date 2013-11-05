@@ -1,12 +1,11 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
-    [TestClass]
     public class TupleSerializerInitializerProxyTests
     {
-        [TestMethod]
+        [Fact]
         public void ConfigInlineTupleSerializer_TupleType_JsConfigFuncsSet()
         {
             // locking in case tests are multi threaded.
@@ -17,8 +16,8 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                 var proxy = new TupleSerializerInitializerProxy();
                 proxy.ConfigInlineTupleSerializer(typeof(Tuple<string, string>));
                 
-                Assert.AreEqual("GetStringValue", JsConfig<Tuple<string, string>>.SerializeFn.Method.Name);
-                Assert.AreEqual("GetTupleFrom", JsConfig<Tuple<string, string>>.DeSerializeFn.Method.Name);
+                Assert.Equal("GetStringValue", JsConfig<Tuple<string, string>>.SerializeFn.Method.Name);
+                Assert.Equal("GetTupleFrom", JsConfig<Tuple<string, string>>.DeSerializeFn.Method.Name);
             }
         }
     }

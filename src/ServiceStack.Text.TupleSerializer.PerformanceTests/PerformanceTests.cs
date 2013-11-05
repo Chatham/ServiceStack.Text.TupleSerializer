@@ -2,15 +2,14 @@
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ServiceStack.Text.TupleSerializer.Api;
+using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.PerformanceTests
 {
-    [TestClass]
     public class PerformanceTests
     {
-        private const int TEST_ITERATIONS = 2000000;
+        private const int TEST_ITERATIONS = 20000000;
 
         private readonly string[] letters =
         {
@@ -52,7 +51,7 @@ namespace ServiceStack.Text.TupleSerializer.PerformanceTests
             {"No Cache", new TupleSerializationHelpers<Tuple<string, string>>(new PassThroughCache<Tuple<string, string>, string>(), new PassThroughCache<string, Tuple<string, string>>())},
         };
 
-        [TestMethod]
+        [Fact]
         public void Serialization()
         {
             var tupleBag = CreateTuples();
@@ -63,7 +62,7 @@ namespace ServiceStack.Text.TupleSerializer.PerformanceTests
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void Deserialization()
         {
             var stringBag = CreateStringPairs();
@@ -83,7 +82,7 @@ namespace ServiceStack.Text.TupleSerializer.PerformanceTests
 
             using (new Stopper(serializerType))
             {
-                Parallel.For(0, TEST_ITERATIONS, i =>
+                Parallel.For(0, TEST_ITERATIONS, new ParallelOptions { MaxDegreeOfParallelism = 5 }, i =>
                 {
                     var r = rnd.Next(values.Count);
                     f(values[r]);

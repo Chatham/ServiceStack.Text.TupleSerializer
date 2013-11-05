@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
-    [TestClass]
     public class CollectionExtensionsTests
     {
-        [TestMethod]
+        [Fact]
         public void GetTuples_NullCollection_ReturnsEmptyHashSet()
         {
             var hashSet = CollectionExtensions.GetTuples(null);
-            Assert.IsTrue(hashSet.IsEmpty());
+            Assert.True(hashSet.IsEmpty());
         }
 
-        [TestMethod]
+        [Fact]
         public void GetTuples_EmptyCollection_ReturnsEmptyHashSet()
         {
             var hashSet = new List<Type>().GetTuples();
-            Assert.IsTrue(hashSet.IsEmpty());
+            Assert.True(hashSet.IsEmpty());
         }
     }
 }
