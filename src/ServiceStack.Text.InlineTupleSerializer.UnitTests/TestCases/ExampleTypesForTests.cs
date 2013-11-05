@@ -33,9 +33,4 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests.TestCases
     {
         public StringPair StringPair { get; set; }
     }
-
-    public class RequestObjectWithVanillaTuple
-    {
-        public Tuple<string, string, string> StringTriad { get; set; }
-    }
 }

@@ -20,5 +20,12 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
             var info = new TupleReflectionProxy<StringPair>();
             Assert.AreEqual(2, info.Count); 
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void Constructor_FakeTupleType_ThrowsException()
+        {
+            new TupleReflectionProxy<FakeTuple>();
+        }
     }
 }

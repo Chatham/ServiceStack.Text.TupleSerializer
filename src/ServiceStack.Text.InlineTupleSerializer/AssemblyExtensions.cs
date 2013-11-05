@@ -12,7 +12,7 @@ namespace ServiceStack.Text.InlineTupleSerializer
             get { return s => true; }
         }
 
-        public static HashSet<Type> GetPublicTuples(this ICollection<Assembly> assemblies, Func<string, bool> namespaceFilter)
+        public static HashSet<Type> GetPublicTuples(this ICollection<Assembly> assemblies, Func<string, bool> namespaceFilter = null)
         {
             if (assemblies.IsEmpty())
             {

@@ -9,12 +9,11 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
         [TestMethod]
         public void ConfigInlineTupleSerializer_TupleType_JsConfigFuncsSet()
         {
-            //Inspecting static values, so locking in cases tests are multi threaded.
+            // locking in case tests are multi threaded.
             lock (StaticTestingLocks.JsConfigLockObject)
             {
                 JsConfig<Tuple<string, string>>.Reset();
 
-                //Testing static class is fun
                 var proxy = new TupleSerializerInitializerProxy();
                 proxy.ConfigInlineTupleSerializer(typeof(Tuple<string, string>));
                 

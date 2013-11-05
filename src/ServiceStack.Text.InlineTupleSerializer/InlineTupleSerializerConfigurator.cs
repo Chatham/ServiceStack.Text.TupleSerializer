@@ -8,7 +8,7 @@ namespace ServiceStack.Text.InlineTupleSerializer
 {
     public sealed class InlineTupleSerializerConfigurator : IInlineTupleSerializerConfigurator
     {
-        private readonly HashSet<Assembly> _assembliesToScan = new HashSet<Assembly>();
+        internal readonly HashSet<Assembly> _assembliesToScan = new HashSet<Assembly>();
 
         private Func<string, bool> _namespaceFilter;
 
