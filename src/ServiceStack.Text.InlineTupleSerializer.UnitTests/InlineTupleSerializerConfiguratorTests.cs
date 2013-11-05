@@ -17,9 +17,10 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
                 .Configure();
 
-            Assert.AreEqual(6, proxyFake.ConfigedTypes.Count);
+            Assert.AreEqual(4, proxyFake.ConfigedTypes.Count);
             Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(ExampleTupleWithoutNamespace)));
-            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string>)));
+            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<double, double>)));
+            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(ObjectThatInheritsFromTuple)));
             Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string, string, string>)));
         }
 
@@ -39,7 +40,7 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
         }
 
         [TestMethod]
-        public void Configure_TestAssemblyFilteredToGenericParametersNamespace_ConfiguresTuplesInNamespace()
+        public void Configure_TestAssemblyFilteredToGenericParametersNamespace_DoesNotConfigureAnyTuples()
         {
             var proxyFake = new TupleSerializerInitializerProxyFake();
 
@@ -48,9 +49,7 @@ namespace ServiceStack.Text.InlineTupleSerializer.UnitTests
                 .WithNamespaceFilter(s => s.Equals("GenericParameters", StringComparison.OrdinalIgnoreCase))
                 .Configure();
 
-            Assert.AreEqual(2, proxyFake.ConfigedTypes.Count);
-            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<int>)));
-            Assert.IsTrue(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string>)));
+            Assert.AreEqual(0, proxyFake.ConfigedTypes.Count);
         }
 
         [TestMethod]
