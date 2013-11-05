@@ -16,7 +16,7 @@ namespace ServiceStack.Text.TupleSerializer
         internal readonly ICache<string, TTuple> _deserializationCache;
 
         public TupleSerializationHelpers()
-            : this(new TupleReflectionProxy<TTuple>(), InlineTupleSerializationCache<TTuple>.SerializeCache, InlineTupleSerializationCache<TTuple>.DeserializeCache)
+            : this(new TupleReflectionProxy<TTuple>(), TupleSerializationCache<TTuple>.SerializeCache, TupleSerializationCache<TTuple>.DeserializeCache)
         {
         }
 

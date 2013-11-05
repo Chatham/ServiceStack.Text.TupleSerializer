@@ -6,7 +6,7 @@ using ServiceStack.Text.TupleSerializer.Api;
 
 namespace ServiceStack.Text.TupleSerializer
 {
-    public sealed class InlineTupleSerializerConfigurator : IInlineTupleSerializerConfigurator
+    public sealed class TupleSerializerConfigurator : ITupleSerializerConfigurator
     {
         internal readonly HashSet<Assembly> _assembliesToScan = new HashSet<Assembly>();
 
@@ -20,13 +20,13 @@ namespace ServiceStack.Text.TupleSerializer
             set { _jsConfigManager = value; }
         }
 
-        public IInlineTupleSerializerConfigurator WithNamespaceFilter(Func<string, bool> namespaceFilter)
+        public ITupleSerializerConfigurator WithNamespaceFilter(Func<string, bool> namespaceFilter)
         {
             _namespaceFilter = namespaceFilter;
             return this;
         }
 
-        public IInlineTupleSerializerConfigurator WithAssemblies(ICollection<Assembly> assembliesToScan)
+        public ITupleSerializerConfigurator WithAssemblies(ICollection<Assembly> assembliesToScan)
         {
             if (assembliesToScan.IsEmpty()) return this;
 

@@ -13,7 +13,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         {
             var proxyFake = new TupleSerializerInitializerProxyFake();
 
-            new InlineTupleSerializerConfigurator { JsConfigProxy = proxyFake }
+            new TupleSerializerConfigurator { JsConfigProxy = proxyFake }
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
                 .Configure();
 
@@ -29,7 +29,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         {
             var proxyFake = new TupleSerializerInitializerProxyFake();
 
-            new InlineTupleSerializerConfigurator { JsConfigProxy = proxyFake }
+            new TupleSerializerConfigurator { JsConfigProxy = proxyFake }
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
                 .WithNamespaceFilter(s => s.Equals("ExampleTuples", StringComparison.OrdinalIgnoreCase))
                 .Configure();
@@ -44,7 +44,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         {
             var proxyFake = new TupleSerializerInitializerProxyFake();
 
-            new InlineTupleSerializerConfigurator { JsConfigProxy = proxyFake }
+            new TupleSerializerConfigurator { JsConfigProxy = proxyFake }
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
                 .WithNamespaceFilter(s => s.Equals("GenericParameters", StringComparison.OrdinalIgnoreCase))
                 .Configure();
@@ -57,7 +57,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         {
             var proxyFake = new TupleSerializerInitializerProxyFake();
 
-            new InlineTupleSerializerConfigurator { JsConfigProxy = proxyFake }
+            new TupleSerializerConfigurator { JsConfigProxy = proxyFake }
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
                 .WithNamespaceFilter(s => s.Equals(string.Empty, StringComparison.OrdinalIgnoreCase))
                 .Configure();
@@ -73,7 +73,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
             {
                 JsConfig<Tuple<string, string, string>>.Reset();
 
-                new InlineTupleSerializerConfigurator()
+                new TupleSerializerConfigurator()
                     .WithAssemblies(new[] {Assembly.GetExecutingAssembly()})
                     .WithNamespaceFilter(s => s.Equals("SingularTupleExample", StringComparison.OrdinalIgnoreCase))
                     .Configure();
@@ -86,7 +86,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         [TestMethod]
         public void WithAssemblies_EmptyList_DoesNotSetAnyAssemblies()
         {
-            var configurator = new InlineTupleSerializerConfigurator();
+            var configurator = new TupleSerializerConfigurator();
 
             configurator.WithAssemblies(null);
 

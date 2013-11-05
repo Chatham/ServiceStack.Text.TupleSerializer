@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace ServiceStack.Text.TupleSerializer
 {
     [ExcludeFromCodeCoverage]
-    internal static class InlineTupleSerializationCache<TTuple> where TTuple
+    internal static class TupleSerializationCache<TTuple> where TTuple
         : IStructuralEquatable, IStructuralComparable, IComparable
     {
         public static ConcurrentDictionaryCache<TTuple, string> SerializeCache = new ConcurrentDictionaryCache<TTuple, string>();
