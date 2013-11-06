@@ -1,6 +1,6 @@
 # ServiceStack.Text.TupleSerializer
 
-Extension for [`ServiceStack.Text`](https://github.com/ServiceStack/ServiceStack.Text) to serialize [`Tuple`](http://msdn.microsoft.com/en-us/library/system.tuple(v=vs.100).aspx) as a delimited string. This allows for more human readable values under specific situations while still leveraging the benefits of using a tuple.
+Extension for [`ServiceStack.Text`](https://github.com/ServiceStack/ServiceStack.Text) to serialize [`Tuple`](http://msdn.microsoft.com/en-us/library/system.tuple%28v=vs.100%29.aspx) as a delimited string. This allows for more human readable values under specific situations while still leveraging the benefits of using a tuple.
 
 Custom tuple serialization currently only applies to the json serializer. It works by assigning custom delegates to [`JsConfig<T>.SerializeFn`](https://github.com/ServiceStack/ServiceStack.Text/blob/master/src/ServiceStack.Text/JsConfig.cs) and [`JsConfig<T>.DeSerializeFn`](https://github.com/ServiceStack/ServiceStack.Text/blob/master/src/ServiceStack.Text/JsConfig.cs).
 
