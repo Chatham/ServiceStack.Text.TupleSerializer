@@ -6,11 +6,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.TupleSerializer.PerformanceTests", "ServiceStack.Text.TupleSerializer.PerformanceTests\ServiceStack.Text.TupleSerializer.PerformanceTests.csproj", "{3A6EFFF4-CA37-415E-BAAB-F77744C33E4C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F2D58DBB-7EE0-4EAB-9052-46944FBD0065}"
-	ProjectSection(SolutionItems) = preProject
-		Local.testsettings = Local.testsettings
-		ServiceStack.Text.TupleSerializer.vsmdi = ServiceStack.Text.TupleSerializer.vsmdi
-		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceStack.Text.TupleSerializer.UnitTests", "ServiceStack.Text.TupleSerializer.UnitTests\ServiceStack.Text.TupleSerializer.UnitTests.csproj", "{888A9B56-C98C-4A64-A9E3-5019AAB5317B}"
 EndProject
