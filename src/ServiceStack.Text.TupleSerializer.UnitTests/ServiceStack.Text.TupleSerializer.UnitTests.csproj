@@ -53,8 +53,8 @@
   <ItemGroup>
     <Compile Include="AssemblyExtensionsTests.cs" />
     <Compile Include="CollectionExtensionsTests.cs" />
+    <Compile Include="TupleSerializerConfiguratorTests.cs" />
     <Compile Include="FakeTuple.cs" />
-    <Compile Include="InlineTupleSerializerConfiguratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticTestingLocks.cs" />
     <Compile Include="TestCases\ExampleTuples.cs" />

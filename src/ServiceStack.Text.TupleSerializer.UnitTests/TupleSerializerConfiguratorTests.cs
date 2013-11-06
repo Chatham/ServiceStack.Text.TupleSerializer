@@ -5,7 +5,7 @@ using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
-    public class InlineTupleSerializerConfiguratorTests
+    public class TupleSerializerConfiguratorTests
     {
         [Fact]
         public void Configure_TestAssembly_ConfiguresAllTuples()
