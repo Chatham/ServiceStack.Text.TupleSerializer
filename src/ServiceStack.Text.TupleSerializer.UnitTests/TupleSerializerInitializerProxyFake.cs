@@ -8,7 +8,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
     {
         public List<Type> ConfigedTypes = new List<Type>();
 
-        public void ConfigInlineTupleSerializer(Type type)
+        public void ConfigInlineTupleSerializer(Type type, string delimeter)
         {
             if (type == null)
             {

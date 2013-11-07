@@ -83,6 +83,16 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         }
 
         [Fact]
+        public void WithDelimeter_CustomDelimeter_SetsCustomDelimeter()
+        {
+            var configurator = new TupleSerializerConfigurator();
+
+            configurator.WithDelimeter(":");
+
+            Assert.Equal(":", configurator._delimeter);
+        }
+
+        [Fact]
         public void WithAssemblies_EmptyList_DoesNotSetAnyAssemblies()
         {
             var configurator = new TupleSerializerConfigurator();

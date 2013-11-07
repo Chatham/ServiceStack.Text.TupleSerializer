@@ -9,14 +9,14 @@ namespace ServiceStack.Text.TupleSerializer
     internal class TupleSerializer<TTuple> : ITupleSerializer<TTuple> 
         where TTuple : IStructuralEquatable, IStructuralComparable, IComparable
     {
-        internal const string DELIMETER = "-";
+        internal string _delimeter = "-";
 
         internal readonly TupleReflectionProxy<TTuple> _tupleInfo;
         internal readonly ICache<TTuple, string> _serializationCache;
         internal readonly ICache<string, TTuple> _deserializationCache;
 
         public TupleSerializer()
-            : this(new TupleReflectionProxy<TTuple>(), TupleSerializationCache<TTuple>.SerializeCache, TupleSerializationCache<TTuple>.DeserializeCache)
+            : this(new TupleReflectionProxy<TTuple>(), new ConcurrentDictionaryCache<TTuple, string>(), new ConcurrentDictionaryCache<string, TTuple>())
         {
         }
 
@@ -35,6 +35,15 @@ namespace ServiceStack.Text.TupleSerializer
             _tupleInfo = tupleInfo;
             _serializationCache = serializationCache; 
             _deserializationCache = deserializationCache;
+        }
+
+        public TupleSerializer<TTuple> SetDelimeter(string delimeter)
+        {
+            if (!string.IsNullOrEmpty(delimeter))
+            {
+                _delimeter = delimeter;
+            }
+            return this;
         }
 
         public TTuple GetTupleFrom(string stringValue)
@@ -60,7 +69,7 @@ namespace ServiceStack.Text.TupleSerializer
             {
                 stringBuilder.Append(delimeter);
                 stringBuilder.Append(tupleMemberProxy.Invoke(tupleValue, new object[] {}));
-                delimeter = DELIMETER;
+                delimeter = _delimeter;
             }
 
             return stringBuilder.ToString();
@@ -73,7 +82,7 @@ namespace ServiceStack.Text.TupleSerializer
 
         internal TTuple DeserializeTuple(string stringValue)
         {
-            var stringValues = stringValue.Split(new[] { DELIMETER }, StringSplitOptions.None);
+            var stringValues = stringValue.Split(new[] { _delimeter }, StringSplitOptions.None);
 
             if (stringValues.Length != _tupleInfo.Count)
             {

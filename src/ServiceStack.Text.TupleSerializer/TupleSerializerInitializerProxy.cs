@@ -6,10 +6,10 @@ namespace ServiceStack.Text.TupleSerializer
     internal class TupleSerializerInitializerProxy : ITupleSerializerInitializerProxy
     {
         //Hide the static class interaction as much as possible
-        public void ConfigInlineTupleSerializer(Type type)
+        public void ConfigInlineTupleSerializer(Type type, string delimeter)
         {
             Type enumHelperType = typeof(TupleSerializerInitializer<>).MakeGenericType(new[] { type });
-            enumHelperType.CreateInstance();
+            Activator.CreateInstance(enumHelperType, new object[] {delimeter});
         }
     }
 }
