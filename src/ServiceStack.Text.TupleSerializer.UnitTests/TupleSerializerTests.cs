@@ -5,12 +5,12 @@ using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests
 {
-    public class TupleSerializationHelpersTests
+    public class TupleSerializerTests
     {
         [Fact]
         public void Serialize()
         {
-            var sh = new TupleSerializationHelpers<Tuple<string, string, string>>();
+            var sh = new TupleSerializer<Tuple<string, string, string>>();
 
             var ser = sh.GetStringValue(new Tuple<string, string, string>("EUR", "EUR", "EUR"));
 
@@ -20,7 +20,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         [Fact]
         public void Deserialize()
         {
-            var sh = new TupleSerializationHelpers<Tuple<string, string, string>>();
+            var sh = new TupleSerializer<Tuple<string, string, string>>();
 
             var ser = sh.GetTupleFrom("EUR-EUR-EUR");
 
@@ -30,7 +30,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         [Fact]
         public void Deserialize_Inherited()
         {
-            var sh = new TupleSerializationHelpers<ObjectThatInheritsFromTuple>();
+            var sh = new TupleSerializer<ObjectThatInheritsFromTuple>();
 
             var ser = sh.GetTupleFrom("EUR-EUR");
 
@@ -40,7 +40,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         [Fact]
         public void Deserialize_TuplePairSerializerGetsTupleTriad_ThrowsException()
         {
-            var sh = new TupleSerializationHelpers<Tuple<string, string>>();
+            var sh = new TupleSerializer<Tuple<string, string>>();
             Assert.Throws<InvalidOperationException>(() => sh.GetTupleFrom("EUR-EUR-EUR"));
         }
 
@@ -50,7 +50,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
             var serCache = MockRepository.GenerateStub<ConcurrentDictionaryCache<Tuple<string>, string>>();
             var deSerCache = MockRepository.GenerateStub<ConcurrentDictionaryCache<string, Tuple<string>>>();
 
-            var ser = new TupleSerializationHelpers<Tuple<string>>(serCache, deSerCache);
+            var ser = new TupleSerializer<Tuple<string>>(serCache, deSerCache);
 
             Assert.Equal(ser._serializationCache, serCache);
             Assert.Equal(ser._deserializationCache, deSerCache);

@@ -6,7 +6,7 @@ using ServiceStack.Text.TupleSerializer.Api;
 
 namespace ServiceStack.Text.TupleSerializer
 {
-    internal class TupleSerializationHelpers<TTuple> : ITupleSerializer<TTuple> 
+    internal class TupleSerializer<TTuple> : ITupleSerializer<TTuple> 
         where TTuple : IStructuralEquatable, IStructuralComparable, IComparable
     {
         internal const string DELIMETER = "-";
@@ -15,19 +15,19 @@ namespace ServiceStack.Text.TupleSerializer
         internal readonly ICache<TTuple, string> _serializationCache;
         internal readonly ICache<string, TTuple> _deserializationCache;
 
-        public TupleSerializationHelpers()
+        public TupleSerializer()
             : this(new TupleReflectionProxy<TTuple>(), TupleSerializationCache<TTuple>.SerializeCache, TupleSerializationCache<TTuple>.DeserializeCache)
         {
         }
 
-        public TupleSerializationHelpers(
+        public TupleSerializer(
             ICache<TTuple, string> serializationCache,
             ICache<string, TTuple> deserializationCache)
             : this(new TupleReflectionProxy<TTuple>(), serializationCache, deserializationCache)
         {
         }
 
-        public TupleSerializationHelpers(
+        public TupleSerializer(
             TupleReflectionProxy<TTuple> tupleInfo,
             ICache<TTuple, string> serializationCache,
             ICache<string, TTuple> deserializationCache)

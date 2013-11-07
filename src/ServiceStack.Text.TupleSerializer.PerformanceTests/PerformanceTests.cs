@@ -45,10 +45,10 @@ namespace ServiceStack.Text.TupleSerializer.PerformanceTests
 
         private readonly Dictionary<string, ITupleSerializer<Tuple<string, string>>> serializersToCompare = new Dictionary<string, ITupleSerializer<Tuple<string, string>>>
         {
-            {"ConcurrentDictionary Cache", new TupleSerializationHelpers<Tuple<string, string>>()},
-            {"ReadWriterLockSlimDictionary Cache", new TupleSerializationHelpers<Tuple<string, string>>(new ReadWriterLockSlimDictionaryCache<Tuple<string, string>, string>(), new ReadWriterLockSlimDictionaryCache<string, Tuple<string, string>>())},
-            {"SynchronizedDictionary Cache", new TupleSerializationHelpers<Tuple<string, string>>(new SynchronizedDictionaryCache<Tuple<string, string>, string>(), new SynchronizedDictionaryCache<string, Tuple<string, string>>())},
-            {"No Cache", new TupleSerializationHelpers<Tuple<string, string>>(new PassThroughCache<Tuple<string, string>, string>(), new PassThroughCache<string, Tuple<string, string>>())},
+            {"ConcurrentDictionary Cache", new TupleSerializer<Tuple<string, string>>()},
+            {"ReadWriterLockSlimDictionary Cache", new TupleSerializer<Tuple<string, string>>(new ReadWriterLockSlimDictionaryCache<Tuple<string, string>, string>(), new ReadWriterLockSlimDictionaryCache<string, Tuple<string, string>>())},
+            {"SynchronizedDictionary Cache", new TupleSerializer<Tuple<string, string>>(new SynchronizedDictionaryCache<Tuple<string, string>, string>(), new SynchronizedDictionaryCache<string, Tuple<string, string>>())},
+            {"No Cache", new TupleSerializer<Tuple<string, string>>(new PassThroughCache<Tuple<string, string>, string>(), new PassThroughCache<string, Tuple<string, string>>())},
         };
 
         [Fact]

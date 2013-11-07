@@ -13,7 +13,7 @@ namespace ServiceStack.Text.TupleSerializer
                 throw new ArgumentException("Type parameter must be a tuple.");
             }
 
-            var serializationHelper = new TupleSerializationHelpers<TTuple>();
+            var serializationHelper = new TupleSerializer<TTuple>();
 
             JsConfig<TTuple>.Reset();
             JsConfig<TTuple>.SerializeFn = serializationHelper.GetStringValue;

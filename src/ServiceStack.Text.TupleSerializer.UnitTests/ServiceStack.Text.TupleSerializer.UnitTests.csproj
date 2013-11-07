@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AssemblyExtensionsTests.cs" />
     <Compile Include="CollectionExtensionsTests.cs" />
+    <Compile Include="TupleSerializerTests.cs" />
     <Compile Include="TupleSerializerConfiguratorTests.cs" />
     <Compile Include="FakeTuple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -62,7 +63,6 @@
     <Compile Include="TestCases\ExampleTupleWithoutNamespace.cs" />
     <Compile Include="TestCases\NamespaceWithSingularTupleExample.cs" />
     <Compile Include="TupleReflectionProxyTests.cs" />
-    <Compile Include="TupleSerializationHelpersTests.cs" />
     <Compile Include="TupleSerializerInitializerProxyFake.cs" />
     <Compile Include="TupleSerializerInitializerProxyTests.cs" />
     <Compile Include="TupleSerializerInitializerTests.cs" />

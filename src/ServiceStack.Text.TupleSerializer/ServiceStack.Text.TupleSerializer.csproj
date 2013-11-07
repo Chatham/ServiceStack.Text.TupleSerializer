@@ -46,10 +46,10 @@
     <Compile Include="AssemblyExtensions.cs" />
     <Compile Include="CollectionExtensions.cs" />
     <Compile Include="ConcurrentDictionaryCache.cs" />
+    <Compile Include="TupleSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TupleReflectionProxy.cs" />
     <Compile Include="TupleSerializationCache.cs" />
-    <Compile Include="TupleSerializationHelpers.cs" />
     <Compile Include="TupleSerializerConfigurator.cs" />
     <Compile Include="TupleSerializerInitializer.cs" />
     <Compile Include="TupleSerializerInitializerProxy.cs" />
