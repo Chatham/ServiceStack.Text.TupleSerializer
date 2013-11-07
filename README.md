@@ -75,6 +75,9 @@ Without ServiceStack.Text.TupleSerializer:
 }
 ```
 
+## Notes
+* This implementation does not support nested tuples.
+
 ## Using the Code
 
 * [Install the NuGet Package](https://nuget.org/packages/ServiceStack.Text.TupleSerializer/)
