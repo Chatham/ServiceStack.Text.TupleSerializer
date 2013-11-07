@@ -10,7 +10,7 @@ namespace ServiceStack.Text.TupleSerializer
     internal class TupleSerializer<TTuple> : ITupleSerializer<TTuple> 
         where TTuple : IStructuralEquatable, IStructuralComparable, IComparable
     {
-        internal string _delimeter = "-";
+        internal string _delimiter = "-";
 
         internal readonly TupleReflectionProxy<TTuple> _tupleInfo;
         internal readonly ICache<TTuple, string> _serializationCache;
@@ -43,11 +43,11 @@ namespace ServiceStack.Text.TupleSerializer
             _deserializationCache = deserializationCache;
         }
 
-        public TupleSerializer<TTuple> SetDelimeter(string delimeter)
+        public TupleSerializer<TTuple> SetDelimiter(string delimiter)
         {
-            if (!string.IsNullOrEmpty(delimeter))
+            if (!string.IsNullOrEmpty(delimiter))
             {
-                _delimeter = delimeter;
+                _delimiter = delimiter;
             }
             return this;
         }
@@ -70,12 +70,12 @@ namespace ServiceStack.Text.TupleSerializer
         internal string SerializeTuple(TTuple tupleValue)
         {
             var stringBuilder = new StringBuilder();
-            var delimeter = "";
+            var delimiter = "";
             foreach (var tupleMemberProxy in _tupleInfo.MethodProxies)
             {
-                stringBuilder.Append(delimeter);
+                stringBuilder.Append(delimiter);
                 stringBuilder.Append(tupleMemberProxy.Invoke(tupleValue, new object[] {}));
-                delimeter = _delimeter;
+                delimiter = _delimiter;
             }
 
             return stringBuilder.ToString();
@@ -88,7 +88,7 @@ namespace ServiceStack.Text.TupleSerializer
 
         internal TTuple DeserializeTuple(string stringValue)
         {
-            var stringValues = stringValue.Split(new[] { _delimeter }, StringSplitOptions.None);
+            var stringValues = stringValue.Split(new[] { _delimiter }, StringSplitOptions.None);
 
             if (stringValues.Length != _tupleInfo.Count)
             {

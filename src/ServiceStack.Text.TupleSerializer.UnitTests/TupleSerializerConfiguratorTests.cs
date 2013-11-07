@@ -83,13 +83,13 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         }
 
         [Fact]
-        public void WithDelimeter_CustomDelimeter_SetsCustomDelimeter()
+        public void WithDelimiter_CustomDelimiter_SetsCustomDelimiter()
         {
             var configurator = new TupleSerializerConfigurator();
 
-            configurator.WithDelimeter(":");
+            configurator.WithDelimiter(":");
 
-            Assert.Equal(":", configurator._delimeter);
+            Assert.Equal(":", configurator._delimiter);
         }
 
         [Fact]

@@ -8,7 +8,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
     public class TupleSerializerTests
     {
         [Fact]
-        public void GetStringValue_Triad_ReturnsSerializedStringUsingDefaultDelimeter()
+        public void GetStringValue_Triad_ReturnsSerializedStringUsingDefaultDelimiter()
         {
             var ser = new TupleSerializer<Tuple<string, string, string>>();
 
@@ -18,10 +18,10 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         }
 
         [Fact]
-        public void GetStringValue_TriadWithCustomDelimeter_ReturnsSerializedStringUsingCustomDelimeter()
+        public void GetStringValue_TriadWithCustomDelimiter_ReturnsSerializedStringUsingCustomDelimiter()
         {
             var ser = new TupleSerializer<Tuple<string, string, string>>()
-                .SetDelimeter(":");
+                .SetDelimiter(":");
 
             var str = ser.GetStringValue(new Tuple<string, string, string>("EUR", "EUR", "EUR"));
 
@@ -29,19 +29,19 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         }
 
         [Fact]
-        public void SetDelimeter_ValidCustomDelimeter_SetsCustomDelimeter()
+        public void SetDelimiter_ValidCustomDelimiter_SetsCustomDelimiter()
         {
             var ser = new TupleSerializer<Tuple<string, string, string>>()
-                .SetDelimeter(":");
-            Assert.Equal(":", ser._delimeter);
+                .SetDelimiter(":");
+            Assert.Equal(":", ser._delimiter);
         }
 
         [Fact]
-        public void SetDelimeter_InvalidCustomDelimeter_DoesNotSetCustomDelimeter()
+        public void SetDelimiter_InvalidCustomDelimiter_DoesNotSetCustomDelimiter()
         {
             var ser = new TupleSerializer<Tuple<string, string, string>>()
-                .SetDelimeter(string.Empty);
-            Assert.Equal("-", ser._delimeter);
+                .SetDelimiter(string.Empty);
+            Assert.Equal("-", ser._delimiter);
         }
 
         [Fact]
@@ -61,10 +61,10 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         }
 
         [Fact]
-        public void GetTupleFrom_StringRepresentingTriadWithCustomDelimeter_ReturnsDeserializedTriad()
+        public void GetTupleFrom_StringRepresentingTriadWithCustomDelimiter_ReturnsDeserializedTriad()
         {
             var ser = new TupleSerializer<Tuple<string, string, string>>()
-                .SetDelimeter(":");
+                .SetDelimiter(":");
 
             var tuple = ser.GetTupleFrom("EUR:EUR:EUR");
 

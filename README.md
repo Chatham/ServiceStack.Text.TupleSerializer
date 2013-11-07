@@ -16,12 +16,12 @@ new TupleSerializerConfigurator()
   .Configure();
 ```
 
-You can also configure a string as a custom delimeter. The default delimeter is the dash ("-") character.
+You can also configure a string as a custom delimiter. The default delimiter is the dash ("-") character.
 ```c#
 new TupleSerializerConfigurator()
   .WithAssemblies(AppDomain.CurrentDomain.GetAssemblies())
   .WithNamespaceFilter(ns => ns.StartsWith("ExampleCode"))
-  .WithDelimeter(":")
+  .WithDelimiter(":")
   .Configure();
 ```
 

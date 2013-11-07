@@ -9,7 +9,7 @@ namespace ServiceStack.Text.TupleSerializer
     {
         internal readonly HashSet<Assembly> _assembliesToScan = new HashSet<Assembly>();
 
-        internal string _delimeter;
+        internal string _delimiter;
 
         private Func<string, bool> _namespaceFilter;
 
@@ -21,9 +21,9 @@ namespace ServiceStack.Text.TupleSerializer
             set { _jsConfigManager = value; }
         }
 
-        public ITupleSerializerConfigurator WithDelimeter(string delimeter)
+        public ITupleSerializerConfigurator WithDelimiter(string delimiter)
         {
-            _delimeter = delimeter;
+            _delimiter = delimiter;
             return this;
         }
 
@@ -53,7 +53,7 @@ namespace ServiceStack.Text.TupleSerializer
             var publicTuples = _assembliesToScan.GetPublicTuples(_namespaceFilter);
             foreach (var publicTuple in publicTuples)
             {
-                JsConfigProxy.ConfigInlineTupleSerializer(publicTuple, _delimeter);
+                JsConfigProxy.ConfigInlineTupleSerializer(publicTuple, _delimiter);
             }
         }
     }
