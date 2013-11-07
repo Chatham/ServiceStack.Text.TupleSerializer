@@ -8,7 +8,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         [Fact]
         public void Constructor_NonTupleObject_ThrowsException()
         {
-            Assert.Throws<ArgumentException>(() => new TupleSerializerInitializer<FakeTuple>());
+            Assert.Throws<ArgumentException>(() => new TupleSerializerInitializer<FakeTuple>(string.Empty));
         }
     }
 }

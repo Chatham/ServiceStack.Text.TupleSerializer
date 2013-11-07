@@ -6,10 +6,6 @@ namespace ServiceStack.Text.TupleSerializer
     internal class TupleSerializerInitializer<TTuple> where TTuple 
         : IStructuralEquatable, IStructuralComparable, IComparable
     {
-        public TupleSerializerInitializer() : this(string.Empty)
-        {
-        }
-
         public TupleSerializerInitializer(string delimeter)
         {
             if (!typeof(TTuple).IsTuple())
