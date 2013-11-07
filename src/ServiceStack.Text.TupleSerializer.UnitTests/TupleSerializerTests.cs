@@ -55,6 +55,12 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         }
 
         [Fact]
+        public void Constructor_NestedTupleType_ThrowsException()
+        {
+            Assert.Throws<NotImplementedException>(() => new TupleSerializer<Tuple<Tuple<string, string>, string, string>>());
+        }
+
+        [Fact]
         public void GetTupleFrom_StringRepresentingTriadWithCustomDelimeter_ReturnsDeserializedTriad()
         {
             var ser = new TupleSerializer<Tuple<string, string, string>>()

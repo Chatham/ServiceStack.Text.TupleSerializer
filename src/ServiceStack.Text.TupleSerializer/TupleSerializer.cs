@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using ServiceStack.Text.TupleSerializer.Api;
 
@@ -32,6 +33,11 @@ namespace ServiceStack.Text.TupleSerializer
             ICache<TTuple, string> serializationCache,
             ICache<string, TTuple> deserializationCache)
         {
+            if (tupleInfo.SubTypes.Any(st => st.IsTuple()))
+            {
+                throw new NotImplementedException("This serializer does not support nested tuples.");
+            }
+
             _tupleInfo = tupleInfo;
             _serializationCache = serializationCache; 
             _deserializationCache = deserializationCache;
