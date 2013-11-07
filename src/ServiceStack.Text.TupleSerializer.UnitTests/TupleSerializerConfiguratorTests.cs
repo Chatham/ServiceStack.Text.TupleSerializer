@@ -48,7 +48,9 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                 .WithNamespaceFilter(s => s.Equals("GenericParameters", StringComparison.OrdinalIgnoreCase))
                 .Configure();
 
-            Assert.Equal(0, proxyFake.ConfigedTypes.Count);
+            Assert.Equal(2, proxyFake.ConfigedTypes.Count);
+            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string>)));
+            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<int>)));
         }
 
         [Fact]

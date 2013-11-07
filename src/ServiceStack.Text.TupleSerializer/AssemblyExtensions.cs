@@ -33,10 +33,8 @@ namespace ServiceStack.Text.TupleSerializer
                     continue;
                 }
 
-                var publicAssemblyTuples =
-                    from publicTupleType in assembly.GatherTypes(namespaceFilter).GetTuples()
-                    select publicTupleType;
-
+                var publicAssemblyTuples = assembly.GatherTypes(namespaceFilter).GetTuples();
+                
                 tupleTypes.AddRange(publicAssemblyTuples);
             }
             return new HashSet<Type>(tupleTypes);
