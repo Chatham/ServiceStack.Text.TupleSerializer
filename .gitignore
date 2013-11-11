@@ -1,6 +1,7 @@
 # User-specific files
 *.suo
 *.user
+*.DotSettings
 *.sln.docstates
 
 # Build results
