@@ -61,7 +61,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticTestingLocks.cs" />
     <Compile Include="TestCases\ExampleTuples.cs" />
-    <Compile Include="TestCases\NamespaceWithSingularTupleExample.cs" />
     <Compile Include="TupleReflectionProxyTests.cs" />
     <Compile Include="TupleSerializerInitializerProxyFake.cs" />
     <Compile Include="TupleSerializerInitializerProxyTests.cs" />

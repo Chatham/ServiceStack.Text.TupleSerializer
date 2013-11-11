@@ -17,7 +17,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
                 .Configure();
 
-            Assert.Equal(10, proxyFake.ConfigedTypes.Count);
+            Assert.Equal(9, proxyFake.ConfigedTypes.Count);
         }
 
         [Fact]
@@ -69,15 +69,14 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         }
 
         [Fact]
-        public void Configure_TestAssembly_JsConfigFunctionsSet()
+        public void Configure_SingularTupleType_JsConfigFunctionsSet()
         {
             lock (StaticTestingLocks.JsConfigLockObject)
             {
                 JsConfig<Tuple<string, string, string>>.Reset();
 
                 new TupleSerializerConfigurator()
-                    .WithAssemblies(new[] {Assembly.GetExecutingAssembly()})
-                    .WithNamespaceFilter(s => s.Equals("SingularTupleExample", StringComparison.OrdinalIgnoreCase))
+                    .WithTupleTypes(new List<Type>{typeof(Tuple<string, string, string>)})
                     .Configure();
 
                 Assert.Equal("GetStringValue", JsConfig<Tuple<string, string, string>>.SerializeFn.Method.Name);
