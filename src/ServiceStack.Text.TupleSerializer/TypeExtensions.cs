@@ -45,10 +45,6 @@ namespace ServiceStack.Text.TupleSerializer
             return type.BaseType.FindTupleDefinition(type);
         }
 
-
-
-
-
         public static IEnumerable<Type> EnumerateTypeTrees(this IEnumerable<Type> rootTypes)
         {
             var alreadyChecked = new HashSet<Type>();
