@@ -101,7 +101,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
 
             configurator.WithAssemblies(null);
 
-            Assert.True(configurator._assembliesToScan.IsEmpty());
+            Assert.Empty(configurator._assembliesToScan);
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
 
             configurator.WithTupleTypes(null);
 
-            Assert.True(configurator._tupleTypes.IsEmpty());
+            Assert.Empty(configurator._tupleTypes);
         }
 
         [Fact]

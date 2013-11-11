@@ -17,14 +17,14 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         public void GetPublicTuples_NullCollection_ReturnEmptyHashSet()
         {
             var hashSet = AssemblyExtensions.GetPublicTuples(null, null);
-            Assert.True(hashSet.IsEmpty());
+            Assert.Empty(hashSet);
         }
 
         [Fact]
         public void GetPublicTuples_EmptyCollection_ReturnEmptyHashSet()
         {
             var hashSet = new List<Assembly>().GetPublicTuples(null);
-            Assert.True(hashSet.IsEmpty());
+            Assert.Empty(hashSet);
         }
 
         [Fact]

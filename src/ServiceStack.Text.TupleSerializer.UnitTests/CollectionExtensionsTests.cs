@@ -10,14 +10,14 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         public void GetTuples_NullCollection_ReturnsEmptyHashSet()
         {
             var hashSet = CollectionExtensions.GetTuples(null);
-            Assert.True(hashSet.IsEmpty());
+            Assert.Empty(hashSet);
         }
 
         [Fact]
         public void GetTuples_EmptyCollection_ReturnsEmptyHashSet()
         {
             var hashSet = new List<Type>().GetTuples();
-            Assert.True(hashSet.IsEmpty());
+            Assert.Empty(hashSet);
         }
     }
 }
