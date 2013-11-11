@@ -19,10 +19,9 @@ namespace ServiceStack.Text.TupleSerializer
             }
 
             var enumTypes =
-                (from type in types.AsParallel()
-                 where type.IsTuple()
-                 select type
-                ).ToList();
+                from type in types.AsParallel()
+                where type.IsTuple()
+                select type;
 
             return new HashSet<Type>(enumTypes);
         }
