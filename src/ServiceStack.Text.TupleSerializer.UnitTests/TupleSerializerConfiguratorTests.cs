@@ -64,7 +64,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                 .Configure();
 
             Assert.Equal(2, proxyFake.ConfigedTypes.Count);
-            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(ExampleTupleWithoutNamespace)));
+            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(TupleWithoutNamespace)));
             Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<int, string>)));
         }
 
