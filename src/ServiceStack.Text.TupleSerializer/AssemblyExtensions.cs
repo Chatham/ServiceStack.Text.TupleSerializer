@@ -33,33 +33,15 @@ namespace ServiceStack.Text.TupleSerializer
                     continue;
                 }
 
-                var publicAssemblyTuples = assembly.GatherTypes(namespaceFilter).GetTuples();
+                var publicAssemblyTuples = 
+                    assembly.GetTypes()
+                    .Where(type => namespaceFilter(type.Namespace ?? string.Empty))
+                    .EnumerateTypeTrees()
+                    .GetTuples();
                 
                 tupleTypes.AddRange(publicAssemblyTuples);
             }
             return new HashSet<Type>(tupleTypes);
-        }
-
-        internal static List<Type> GatherTypes(this Assembly assembly, Func<string, bool> namespaceFilter)
-        {
-            var types = new List<Type>();
-
-            foreach (var type in assembly.GetTypes())
-            {
-                if (!namespaceFilter(type.Namespace ?? string.Empty))
-                {
-                    continue;
-                }
-
-                types.Add(type);
-
-                foreach (var property in type.GetProperties())
-                {
-                    types.Add(property.PropertyType);
-                }
-            }
-            
-            return types;
         }
     }
 }

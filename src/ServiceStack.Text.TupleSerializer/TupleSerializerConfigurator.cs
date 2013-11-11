@@ -9,7 +9,7 @@ namespace ServiceStack.Text.TupleSerializer
     {
         internal readonly HashSet<Assembly> _assembliesToScan = new HashSet<Assembly>();
 
-        private readonly HashSet<Type> _tupleTypes = new HashSet<Type>();
+        internal readonly HashSet<Type> _tupleTypes = new HashSet<Type>();
 
         internal string _delimiter;
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ServiceStack.Text.TupleSerializer
@@ -42,6 +43,58 @@ namespace ServiceStack.Text.TupleSerializer
             }
 
             return type.BaseType.FindTupleDefinition(type);
+        }
+
+
+
+
+
+        public static IEnumerable<Type> EnumerateTypeTrees(this IEnumerable<Type> rootTypes)
+        {
+            var alreadyChecked = new HashSet<Type>();
+            var stack = new Stack<Type>();
+
+            foreach (var rootType in rootTypes)
+            {
+                if (rootType != null)
+                {
+                    stack.Push(rootType);
+                }
+            }
+            
+            while (stack.Count > 0)
+            {
+                var current = stack.Pop();
+
+                if (alreadyChecked.Contains(current)) continue;
+
+                alreadyChecked.Add(current);
+                yield return current;
+
+                foreach (var property in current.GetProperties())
+                {
+                    stack.Push(property.PropertyType);
+                }
+
+                var baseType = current.BaseType;
+                if (baseType != null && baseType != typeof(Object))
+                {
+                    stack.Push(baseType);
+                }
+
+                foreach (var type in current.GetInterfaces())
+                {
+                    stack.Push(type);
+                }
+
+                if (current.IsGenericType && !current.IsGenericTypeDefinition)
+                {
+                    foreach (var type in current.GetGenericArguments())
+                    {
+                        stack.Push(type);
+                    }
+                }
+            }
         }
     }
 }

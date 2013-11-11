@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using ExampleTuples;
 using Xunit;
@@ -16,11 +17,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
                 .Configure();
 
-            Assert.Equal(4, proxyFake.ConfigedTypes.Count);
-            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(ExampleTupleWithoutNamespace)));
-            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<double, double>)));
-            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(ObjectThatInheritsFromTuple)));
-            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string, string, string>)));
+            Assert.Equal(10, proxyFake.ConfigedTypes.Count);
         }
 
         [Fact]
@@ -33,8 +30,9 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                 .WithNamespaceFilter(s => s.Equals("ExampleTuples", StringComparison.OrdinalIgnoreCase))
                 .Configure();
 
-            Assert.Equal(2, proxyFake.ConfigedTypes.Count);
+            Assert.Equal(3, proxyFake.ConfigedTypes.Count);
             Assert.True(proxyFake.ConfigedTypes.Contains(typeof(ObjectThatInheritsFromTuple)));
+            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string, string>)));
             Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<double, double>)));
         }
 
@@ -45,12 +43,14 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
 
             new TupleSerializerConfigurator { JsConfigProxy = proxyFake }
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
-                .WithNamespaceFilter(s => s.Equals("GenericParameters", StringComparison.OrdinalIgnoreCase))
+                .WithNamespaceFilter(s => s.Equals("NestedInGenerics", StringComparison.OrdinalIgnoreCase))
                 .Configure();
 
-            Assert.Equal(2, proxyFake.ConfigedTypes.Count);
+            Assert.Equal(4, proxyFake.ConfigedTypes.Count);
             Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<string>)));
             Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<int>)));
+            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<bool, bool>)));
+            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<int, int>)));
         }
 
         [Fact]
@@ -63,8 +63,9 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                 .WithNamespaceFilter(s => s.Equals(string.Empty, StringComparison.OrdinalIgnoreCase))
                 .Configure();
 
-            Assert.Equal(1, proxyFake.ConfigedTypes.Count);
+            Assert.Equal(2, proxyFake.ConfigedTypes.Count);
             Assert.True(proxyFake.ConfigedTypes.Contains(typeof(ExampleTupleWithoutNamespace)));
+            Assert.True(proxyFake.ConfigedTypes.Contains(typeof(Tuple<int, string>)));
         }
 
         [Fact]
@@ -102,6 +103,60 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
             configurator.WithAssemblies(null);
 
             Assert.True(configurator._assembliesToScan.IsEmpty());
+        }
+
+        [Fact]
+        public void WithTupleTypes_EmptyList_DoesNotRegisterAnyTuples()
+        {
+            var configurator = new TupleSerializerConfigurator();
+
+            configurator.WithTupleTypes(null);
+
+            Assert.True(configurator._tupleTypes.IsEmpty());
+        }
+
+        [Fact]
+        public void WithTupleTypes_ListWithTupleTypesAndNonTupleTypes_OnlyRegistersTuples()
+        {
+            var configurator = new TupleSerializerConfigurator();
+
+            configurator.WithTupleTypes(new List<Type>
+            {
+                typeof(Tuple<string,string>), typeof(NotSupportedException)
+            });
+
+            Assert.Equal(1, configurator._tupleTypes.Count);
+            Assert.True(configurator._tupleTypes.Contains(typeof(Tuple<string, string>)));
+        }
+
+        [Fact]
+        public void WithTupleTypes_ListWithNonRegisteredTupleType_AdditivelyRegistersTupleType()
+        {
+            var configurator = new TupleSerializerConfigurator();
+            configurator._tupleTypes.Add(typeof(Tuple<bool, bool>));
+
+            configurator.WithTupleTypes(new List<Type>
+            {
+                typeof(Tuple<string,string>)
+            });
+
+            Assert.Equal(2, configurator._tupleTypes.Count);
+            Assert.True(configurator._tupleTypes.Contains(typeof(Tuple<bool, bool>)));
+        }
+
+        [Fact]
+        public void WithTupleTypes_ListWithAlreadyRegisteredTupleType_DoesNotReRegisterTupleType()
+        {
+            var configurator = new TupleSerializerConfigurator();
+            configurator._tupleTypes.Add(typeof(Tuple<bool, bool>));
+
+            configurator.WithTupleTypes(new List<Type>
+            {
+                typeof(Tuple<bool,bool>)
+            });
+
+            Assert.Equal(1, configurator._tupleTypes.Count);
+            Assert.True(configurator._tupleTypes.Contains(typeof(Tuple<bool, bool>)));
         }
     }
 }

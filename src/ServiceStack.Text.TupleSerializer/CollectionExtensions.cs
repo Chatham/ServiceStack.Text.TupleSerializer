@@ -11,9 +11,9 @@ namespace ServiceStack.Text.TupleSerializer
             return collection == null || collection.Count == 0;
         }
 
-        public static HashSet<Type> GetTuples(this ICollection<Type> types)
+        public static HashSet<Type> GetTuples(this IEnumerable<Type> types)
         {
-            if (types.IsEmpty())
+            if (types == null)
             {
                 return new HashSet<Type>();
             }
