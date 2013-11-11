@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AssemblyExtensionsTests.cs" />
     <Compile Include="CollectionExtensionsTests.cs" />
+    <Compile Include="TestCases\TupleWithNamespace.cs" />
     <Compile Include="TestCases\TupleWithoutNamespace.cs" />
     <Compile Include="TestCases\TupleNestedInGenericArguments.cs" />
     <Compile Include="TupleSerializerTests.cs" />
@@ -60,7 +61,6 @@
     <Compile Include="FakeTuple.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticTestingLocks.cs" />
-    <Compile Include="TestCases\ExampleTuples.cs" />
     <Compile Include="TupleReflectionProxyTests.cs" />
     <Compile Include="TupleSerializerInitializerProxyFake.cs" />
     <Compile Include="TupleSerializerInitializerProxyTests.cs" />

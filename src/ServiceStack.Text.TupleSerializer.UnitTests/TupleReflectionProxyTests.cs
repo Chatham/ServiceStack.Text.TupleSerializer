@@ -1,5 +1,5 @@
 ﻿using System;
-using ExampleTuples;
+using TupleWithNamespace;
 using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests

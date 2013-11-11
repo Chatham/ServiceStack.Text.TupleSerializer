@@ -1,6 +1,6 @@
 ﻿using System;
-using ExampleTuples;
 using Rhino.Mocks;
+using TupleWithNamespace;
 using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests

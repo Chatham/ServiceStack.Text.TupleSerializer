@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using ExampleTuples;
+using TupleWithNamespace;
 using Xunit;
 
 namespace ServiceStack.Text.TupleSerializer.UnitTests
@@ -27,7 +27,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
 
             new TupleSerializerConfigurator { JsConfigProxy = proxyFake }
                 .WithAssemblies(new[] { Assembly.GetExecutingAssembly() })
-                .WithNamespaceFilter(s => s.Equals("ExampleTuples", StringComparison.OrdinalIgnoreCase))
+                .WithNamespaceFilter(s => s.Equals("TupleWithNamespace", StringComparison.OrdinalIgnoreCase))
                 .Configure();
 
             Assert.Equal(3, proxyFake.ConfigedTypes.Count);

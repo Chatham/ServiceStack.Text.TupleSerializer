@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ExampleTuples
+namespace TupleWithNamespace
 {
     public class ObjectThatInheritsFromTuple : Tuple<string, string>
     {
