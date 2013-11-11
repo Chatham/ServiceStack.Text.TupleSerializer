@@ -9,6 +9,8 @@ namespace ServiceStack.Text.TupleSerializer
     {
         internal readonly HashSet<Assembly> _assembliesToScan = new HashSet<Assembly>();
 
+        private readonly HashSet<Type> _tupleTypes = new HashSet<Type>();
+
         internal string _delimiter;
 
         private Func<string, bool> _namespaceFilter;
@@ -48,9 +50,21 @@ namespace ServiceStack.Text.TupleSerializer
             return this;
         }
 
+        public ITupleSerializerConfigurator WithTupleTypes(ICollection<Type> types)
+        {
+            if (!types.IsEmpty())
+            {
+                var publicTuples = types.GetTuples();
+                _tupleTypes.UnionWith(publicTuples);
+            }
+
+            return this;
+        }
+
         public void Configure()
         {
             var publicTuples = _assembliesToScan.GetPublicTuples(_namespaceFilter);
+            publicTuples.UnionWith(_tupleTypes);
             foreach (var publicTuple in publicTuples)
             {
                 JsConfigProxy.ConfigInlineTupleSerializer(publicTuple, _delimiter);
