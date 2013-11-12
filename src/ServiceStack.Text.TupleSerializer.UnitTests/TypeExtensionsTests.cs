@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TupleWithNamespace;
 using Xunit;
 
@@ -113,6 +114,13 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         {
             var hashSet = new List<Type>().GetTuples();
             Assert.Empty(hashSet);
+        }
+
+        [Fact]
+        public void EnumerateTypeTrees_NullEnumerable_ReturnsEmptyEnumerator()
+        {
+            var count = TypeExtensions.EnumerateTypeTrees(null).Count();
+            Assert.Equal(0, count);
         }
     }
 }
