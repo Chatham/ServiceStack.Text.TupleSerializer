@@ -16,13 +16,20 @@ new TupleSerializerConfigurator()
   .Configure();
 ```
 
-You can also configure a string as a custom delimiter. The default delimiter is the dash ("-") character.
+Configure a string as a custom delimiter: (The default delimiter is the dash "-" character)
 ```c#
 new TupleSerializerConfigurator()
   .WithAssemblies(AppDomain.CurrentDomain.GetAssemblies())
   .WithNamespaceFilter(ns => ns.StartsWith("ExampleCode"))
   .WithDelimiter(":")
   .Configure();
+```
+
+Configure explicit tuples: (useful for testing)
+```c#
+new TupleSerializerConfigurator()
+   .WithTupleTypes(new List<Type>{typeof(Tuple<string, string>)})
+   .Configure();
 ```
 
 ### Service Integration
@@ -77,6 +84,10 @@ Without ServiceStack.Text.TupleSerializer:
 
 ## Notes
 * This implementation does not support nested tuples.
+* `.WithNamespaceFilter()` only applies to public tuples found in assemblies passed using `.WithAssemblies()`. Any tuples explicitly identified `.WithTupleTypes() ` will not be filtered by namespace.
+* Multiple calls to `.WithTupleTypes()` are additive and will not replace previously specified values.
+* Both `.WithTupleTypes()` and `.WithAssemblies()` may be used at the same time, the results will be combined.
+* `Configure()` should be called before serializing/deserializing anything with `ServiceStack.Text` or the custom methods may not register correctly with `JsConfig`.
 
 ## Using the Code
 
