@@ -44,7 +44,6 @@
     <Compile Include="Api\ITupleSerializerConfigurator.cs" />
     <Compile Include="Api\ITupleSerializerInitializerProxy.cs" />
     <Compile Include="AssemblyExtensions.cs" />
-    <Compile Include="CollectionExtensions.cs" />
     <Compile Include="ConcurrentDictionaryCache.cs" />
     <Compile Include="TupleSerializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

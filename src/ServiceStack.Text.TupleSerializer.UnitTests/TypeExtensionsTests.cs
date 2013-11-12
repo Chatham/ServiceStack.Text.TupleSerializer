@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TupleWithNamespace;
 using Xunit;
 
@@ -98,6 +99,20 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         public void FindTupleDefinition_Null_ReturnsNull()
         {
             Assert.Null(TypeExtensions.FindTupleDefinition(null));
+        }
+
+        [Fact]
+        public void GetTuples_NullCollection_ReturnsEmptyHashSet()
+        {
+            var hashSet = TypeExtensions.GetTuples(null);
+            Assert.Empty(hashSet);
+        }
+
+        [Fact]
+        public void GetTuples_EmptyCollection_ReturnsEmptyHashSet()
+        {
+            var hashSet = new List<Type>().GetTuples();
+            Assert.Empty(hashSet);
         }
     }
 }
