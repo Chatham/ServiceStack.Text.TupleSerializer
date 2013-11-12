@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -65,41 +66,44 @@ namespace ServiceStack.Text.TupleSerializer
             if(rootTypes == null) yield break;
 
             var alreadyChecked = new HashSet<Type>();
-            var stack = new Stack<Type>(rootTypes);
+            var stack = new ConcurrentStack<Type>(rootTypes);
 
-            while (stack.Count > 0)
+            Type currentType;
+            while (stack.TryPop(out currentType))
             {
-                var current = stack.Pop();
+                if (alreadyChecked.Contains(currentType)) continue;
 
-                if (alreadyChecked.Contains(current)) continue;
+                alreadyChecked.Add(currentType);
+                yield return currentType;
 
-                alreadyChecked.Add(current);
-                yield return current;
-
-                foreach (var property in current.GetProperties())
+                var extractedTypes = currentType.ExtractTypes();
+                if (extractedTypes.Length > 0)
                 {
-                    stack.Push(property.PropertyType);
-                }
-
-                var baseType = current.BaseType;
-                if (baseType != null && baseType != typeof(Object))
-                {
-                    stack.Push(baseType);
-                }
-
-                foreach (var type in current.GetInterfaces())
-                {
-                    stack.Push(type);
-                }
-
-                if (current.IsGenericType && !current.IsGenericTypeDefinition)
-                {
-                    foreach (var type in current.GetGenericArguments())
-                    {
-                        stack.Push(type);
-                    }
+                    stack.PushRange(extractedTypes);
                 }
             }
+        }
+
+        public static Type[] ExtractTypes(this Type rootType)
+        {
+            var types = new List<Type>();
+
+            types.AddRange(rootType.GetProperties().Select(pi => pi.PropertyType));
+
+            var baseType = rootType.BaseType;
+            if (baseType != null && baseType != typeof(Object))
+            {
+                types.Add(baseType);
+            }
+
+            types.AddRange(rootType.GetInterfaces());
+
+            if (rootType.IsGenericType && !rootType.IsGenericTypeDefinition)
+            {
+                types.AddRange(rootType.GetGenericArguments());
+            }
+
+            return types.ToArray();
         }
     }
 }
