@@ -59,22 +59,14 @@ namespace ServiceStack.Text.TupleSerializer
 
             return type.BaseType.FindTupleDefinition(type);
         }
-        
+
         public static IEnumerable<Type> EnumerateTypeTrees(this IEnumerable<Type> rootTypes)
         {
             if(rootTypes == null) yield break;
 
             var alreadyChecked = new HashSet<Type>();
-            var stack = new Stack<Type>();
+            var stack = new Stack<Type>(rootTypes);
 
-            foreach (var rootType in rootTypes)
-            {
-                if (rootType != null)
-                {
-                    stack.Push(rootType);
-                }
-            }
-            
             while (stack.Count > 0)
             {
                 var current = stack.Pop();
