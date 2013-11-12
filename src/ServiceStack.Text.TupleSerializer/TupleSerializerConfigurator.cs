@@ -37,7 +37,7 @@ namespace ServiceStack.Text.TupleSerializer
 
         public ITupleSerializerConfigurator WithAssemblies(ICollection<Assembly> assembliesToScan)
         {
-            if (assembliesToScan.IsEmpty()) return this;
+            if (assembliesToScan == null) return this;
 
             foreach (var assembly in assembliesToScan)
             {
@@ -52,7 +52,7 @@ namespace ServiceStack.Text.TupleSerializer
 
         public ITupleSerializerConfigurator WithTupleTypes(ICollection<Type> types)
         {
-            if (!types.IsEmpty())
+            if (types != null)
             {
                 var publicTuples = types.GetTuples();
                 _tupleTypes.UnionWith(publicTuples);

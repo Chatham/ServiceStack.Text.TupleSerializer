@@ -105,11 +105,21 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         }
 
         [Fact]
-        public void WithTupleTypes_EmptyList_DoesNotRegisterAnyTuples()
+        public void WithTupleTypes_NullList_DoesNotRegisterAnyTuples()
         {
             var configurator = new TupleSerializerConfigurator();
 
             configurator.WithTupleTypes(null);
+
+            Assert.Empty(configurator._tupleTypes);
+        }
+
+        [Fact]
+        public void WithTupleTypes_EmptyList_DoesNotRegisterAnyTuples()
+        {
+            var configurator = new TupleSerializerConfigurator();
+
+            configurator.WithTupleTypes(new List<Type>());
 
             Assert.Empty(configurator._tupleTypes);
         }

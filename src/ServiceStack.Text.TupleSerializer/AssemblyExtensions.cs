@@ -14,7 +14,7 @@ namespace ServiceStack.Text.TupleSerializer
 
         public static HashSet<Type> GetPublicTuples(this ICollection<Assembly> assemblies, Func<string, bool> namespaceFilter = null)
         {
-            if (assemblies.IsEmpty())
+            if (assemblies == null)
             {
                 return new HashSet<Type>();
             }
