@@ -1,5 +1,6 @@
 ﻿using System;
 using Rhino.Mocks;
+using ServiceStack.Text.TupleSerializer.Api;
 using TupleWithNamespace;
 using Xunit;
 
@@ -91,8 +92,8 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
         [Fact]
         public void Constructor_CacheInjection_SetsInternalCacheReferences()
         {
-            var serCache = MockRepository.GenerateStub<ConcurrentDictionaryCache<Tuple<string>, string>>();
-            var deSerCache = MockRepository.GenerateStub<ConcurrentDictionaryCache<string, Tuple<string>>>();
+            var serCache = new ConcurrentDictionaryCache<Tuple<string>, string>();
+            var deSerCache = new ConcurrentDictionaryCache<string, Tuple<string>>();
 
             var ser = new TupleSerializer<Tuple<string>>(serCache, deSerCache);
 

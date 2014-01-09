@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AssemblyExtensionsTests.cs" />
     <Compile Include="CollectionExtensionsTests.cs" />
+    <Compile Include="ConcurrentDictionaryCacheTests.cs" />
     <Compile Include="TestCases\TupleWithNamespace.cs" />
     <Compile Include="TestCases\TupleWithoutNamespace.cs" />
     <Compile Include="TestCases\TupleNestedInGenericArguments.cs" />
