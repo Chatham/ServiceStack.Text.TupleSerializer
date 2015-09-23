@@ -80,7 +80,8 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                     .Configure();
 
                 Assert.Equal("GetStringValue", JsConfig<Tuple<string, string, string>>.SerializeFn.Method.Name);
-                Assert.Equal("GetTupleFrom", JsConfig<Tuple<string, string, string>>.DeSerializeFn.Method.Name);
+                Assert.Equal("GetTupleFrom",
+                    JsConfigFnTargetResolver<Tuple<string, string, string>>.GetDeserializer().Method.Name);
             }
         }
 

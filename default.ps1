@@ -32,7 +32,12 @@ properties {
     $projectBaseName = "ServiceStack.Text.TupleSerializer"
     $csprojFile = "$srcRoot\$projectBaseName\$projectBaseName.csproj"
     $unitTestNamePart = "UnitTests"
-    $testDll = "$srcRoot\$projectBaseName.$unitTestNamePart\bin\$configuration\$projectBaseName.$unitTestNamePart.dll"
+    $testDllFileName = "$projectBaseName.$unitTestNamePart.dll"
+    $testOutputPath = "$srcRoot\$projectBaseName.$unitTestNamePart\bin\$configuration"
+    $testDll = "$testOutputPath\$testDllFileName"
+    $ssTextv4Dll = "$rootLocation\tools\ServiceStack.Text.4\lib\net40\ServiceStack.Text.dll"
+    $ssTextV4TestOutputPath = "$rootLocation\ssTextv4Test"
+    $ssTextV4TestDllFullPath = "$ssTextV4TestOutputPath\$testDllFileName"
     $slnFile = "$srcRoot\$projectBaseName.sln"
     $nuspecFile ="$srcRoot\$projectBaseName\$projectBaseName.nuspec"
     $framework = "4.0"
@@ -67,7 +72,14 @@ task Test -depends Compile {
   exec { .$xunitRunner "$testDll" }
 }
 
-task SetReleaseNotes -depends Test {
+task TestSsTextV4 -depends Compile {
+  mkdir -path "$ssTextV4TestOutputPath" -force
+  cp "$testOutputPath\*.*" "$ssTextV4TestOutputPath"
+  cp "$ssTextv4Dll" "$ssTextV4TestOutputPath" -force
+  exec { .$xunitRunner "$ssTextV4TestDllFullPath" }
+}
+
+task SetReleaseNotes -depends Test,TestSsTextV4 {
   $releaseNotesText = $Env:ReleaseNotes
   $vcsNumber = $Env:BUILD_VCS_NUMBER
 

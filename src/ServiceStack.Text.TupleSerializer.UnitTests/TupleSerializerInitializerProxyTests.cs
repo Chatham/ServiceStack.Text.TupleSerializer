@@ -17,7 +17,7 @@ namespace ServiceStack.Text.TupleSerializer.UnitTests
                 proxy.ConfigInlineTupleSerializer(typeof(Tuple<string, string>), null);
                 
                 Assert.Equal("GetStringValue", JsConfig<Tuple<string, string>>.SerializeFn.Method.Name);
-                Assert.Equal("GetTupleFrom", JsConfig<Tuple<string, string>>.DeSerializeFn.Method.Name);
+                Assert.Equal("GetTupleFrom", JsConfigFnTargetResolver<Tuple<string, string>>.GetDeserializer().Method.Name);
             }
         }
     }
